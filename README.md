@@ -10,7 +10,7 @@ If you don't, click "Repeat" or type LeftArrow, and the sentence will come back 
 
 When I don't understand a word I consult an AI to explain the word using the following prompt: 
 
-    Translate to and from Swahili, prefer the kenyan dialect. Add a little bit of gramatical and word explanations.
+    Translate to and from Swahili, prefer the kenyan dialect. Add a little bit of grammatical and word explanations.
 
 You can select cards from one or more categories. Progress is reported. 
 
