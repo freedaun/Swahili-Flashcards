@@ -16,6 +16,6 @@ When I don't understand a word I consult an AI to explain the word using the fol
 
 You can select cards from one or more categories. Progress is reported. 
 
-To add words or sentences, open the file in a text editor, locate 'vocabulary[]' and add your own entries. 
+To add words or sentences, open the file in a text editor, locate 'vocabulary[]', prompt an AI to give you the data you need and add them as entries. 
 
 
