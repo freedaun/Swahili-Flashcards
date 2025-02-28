@@ -1,5 +1,7 @@
 # Swahili Flashcards
 
+![image](https://github.com/user-attachments/assets/2495b776-6483-4f6b-bff3-d7165043ebb7)
+
 This is a page which allows you to practice Swahili in a very uncomplicated way, so you can focus on learning. 
 
 You get a simple sentence from one or more categories, and see if you already understand it. 
@@ -15,3 +17,5 @@ When I don't understand a word I consult an AI to explain the word using the fol
 You can select cards from one or more categories. Progress is reported. 
 
 To add words or sentences, open the file in a text editor, locate 'vocabulary[]' and add your own entries. 
+
+
