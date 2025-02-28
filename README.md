@@ -6,9 +6,9 @@ This is a page which allows you to practice Swahili in a very uncomplicated way,
 
 You get simple sentences from one or more categories, and see if you already understand it. 
 
-If you do, click `Remove` or type RightArrow, and the sentence will not repeat. 
+If you do, click "Remove" or type RightArrow, and the sentence will not repeat. 
 
-If you don't, click `Repeat` or type LeftArrow, and the sentence will come back soon. 
+If you don't, click "Repeat" or type LeftArrow, and the sentence will come back soon. 
 
 Then the sentence scrolls up, with a translation added, with a new sentence below. 
 
@@ -24,4 +24,4 @@ Click `Invert` to go from English to Swhahili instead.
 
 To add words or sentences, open the file in a text editor, locate 'vocabulary[]', prompt an AI to give you the data you need and add them as entries. 
 
-
+Verbs have their root separated by a single quote, to show the conjugation, ex: `ana'lia`. The same was done for nouns when they are changed, like `kazi'ni`.
