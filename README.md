@@ -22,6 +22,6 @@ You can select cards from one or more categories. Progress is reported.
 
 Click `Invert` to go from English to Swhahili instead. 
 
-To add words or sentences, open the file in a text editor, locate 'vocabulary[]', prompt an AI to give you the data you need and add them as entries. 
+To add words or sentences, open the file in a text editor, locate `vocabulary[]`, prompt an AI to give you the data you need and add them as entries. 
 
 Verbs have their root separated by a single quote, to show the conjugation, ex: `ana'lia`. The same was done for nouns when they are changed, like `kazi'ni`.
