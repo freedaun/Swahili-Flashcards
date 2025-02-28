@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Swahili Flashcards</title>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 1.5em;
+            text-align: left;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        #gameContainer {
+            width: 700px;
+        }
+        #previousWords {
+            border: 1px solid #eee;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        button, label {
+            font-size: 1em;
+            padding: 5px 10px;
+            margin: 5px;
+        }
+        .category-1 { color: darkblue; }
+        .category-2 { color: darkgreen; }
+        .category-3 { color: purple; }
+        .category-4 { color: orange; }
+        .category-5 { color: darkcyan; }
+        .category-6 { color: red; }
+        .category-7 { color: darkgoldenrod; }
+        .category-8 { color: darkmagenta; }
+        .category-9 { color: brown; }
+        #wordCounter {
+            margin-top: 10px;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <h1>Swahili Flashcards</h1>
+        <div id="categoryCheckboxes"></div>
+        <div id="wordCounter"></div>
+        <div id="previousWords"></div>
+        <div id="currentWord">
+            <button id="dontKnowButton" onclick="dontKnowAction()">Repeat</button>
+            <button id="knowButton" onclick="knowWord()">Remove</button>
+            <label><input type="checkbox" id="invertLanguages"> Invert</label>
+        </div>
+    </div>
+
+    <script>
+
+
+
+
+    let categories = ["Actions", "Animals", "Connections", "Expressions & Questions", 
+        "Food", "People", "Places & Nature", "Qualities & Time", "Things", "eXtra"];
+        
+let vocabulary = [
+    ["mtu mmoja", "one person", 3],
+    ["watu wawili", "two people", 3],
+    ["nyumba tatu", "three houses", 3],
+    ["nyumba nne", "four houses", 3],
+    ["chakula tano", "five foods", 3],
+    ["maji sita", "six waters", 3],
+    ["vitabu saba", "seven books", 3],
+    ["ma'gari nane", "eight cars", 3],
+    ["walimu tisa", "nine teachers", 3],
+    ["ma'soko kumi", "ten markets", 3],
+    ["rafiki kumi na moja", "eleven friends", 3],
+    ["ndugu kumi na mbili", "twelve siblings", 3],
+    ["simba ishirini", "twenty lions", 2],
+    ["tembo thelathini", "thirty elephants", 2],
+    ["rafiki mia moja", "one hundred friends", 3],
+    ["vitabu mia mbili", "two hundred books", 3],
+    ["ma'gari mia tano", "five hundred cars", 3],
+    ["watu elfu moja", "one thousand people", 3],
+    ["nyumba elfu mbili", "two thousand houses", 3],
+    ["simba elfu kumi", "ten thousand lions", 2],
+    
+    ["mtu mrefu", "tall person", 6],
+    ["nyumba kubwa", "big house", 7],
+    ["chakula kitamu sana", "very delicious food", 5],
+    ["maji baridi", "cold water", 7],
+    ["kitabu cha hadithi", "story book", 9],
+    ["gari jipya", "new car", 9],
+    ["mwalimu mkarimu", "generous teacher", 6],
+    ["soko lenye watu wengi", "crowded market", 7],
+    ["ndugu mpendwa", "beloved sibling", 6],
+    ["simba mkali", "fierce lion", 2],
+    ["tembo mkubwa sana", "very large elephant", 2],    
+    ["jina zuri", "beautiful name", 8],
+    ["asante sana rafiki", "thank you very much friend", 4],
+    ["tafadhali nisaidie", "please help me", 4],
+    ["ndiyo, naku'bali", "yes, I agree", 4],
+    ["hapana, siwezi", "no, I can't", 4],
+    ["habari za asubuhi", "good morning", 4],
+    ["sawa, tuta'onana", "okay, we will see each other", 4],
+    ["pole sana kwa msiba", "very sorry for the loss", 4],
+    ["ana'kula chakula haraka", "she eats food quickly", 1],
+    ["ana'kunywa maji polepole", "she drinks water slowly", 1],
+    ["ana'kwenda soko'ni kila siku", "she goes to the market every day", 1],
+    ["ana'kuja nyumbani usiku", "she comes home at night", 1],
+    ["ana'lala mapema sana", "she sleeps very early", 1],
+    ["ana'fanya kazi kwa bidii", "she works hard", 1],
+    ["ana'sema ukweli daima", "she always tells the truth", 1],
+    ["ana'sikiliza muziki kwa makini", "she listens to music carefully", 1],
+    ["ana'uliza swali gumu", "she asks a difficult question", 1],
+    ["ana'ona mandhari nzuri", "she sees a beautiful landscape", 1],
+    ["ana'sikia sauti kubwa", "she hears a loud sound", 1],
+    ["ana'kuwa na furaha tele", "she is plenty happy", 1],
+    ["ana'penda maua sana", "she likes flowers very much", 1],
+    ["anu'nunua nguo m'pya", "she buys new clothes", 1],
+    ["ana'uza matunda soko'ni", "she sells fruits at the market", 1],
+    ["ana'pika chakula kitamu", "she cooks delicious food", 1],
+    ["ana'cheza mpira uwanja'ni", "she plays soccer on the field", 1],
+    ["jambo rafiki yangu", "hello my friend", 4],
+    ["sasa habari yako", "hi, how are you", 4],
+    ["karibu sana nyumbani kwetu", "welcome to our home", 4],
+    ["samahani kwa kuchelewa", "sorry for being late", 4],
+    ["kwaheri, tuta'onana baadaye", "goodbye, we'll see each other later", 4],
+    ["bei gani kwa vitu hivi", "how much for these items", 4],
+    ["hakuna matata rafiki", "no problem friend", 4],
+    ["hakuna shida kabisa", "no problem at all", 4],
+    ["pole pole twende", "let's go slowly", 4],
+    ["nzuri sana hii", "this is very good", 4],
+    ["safi sana mahali hapa", "this place is very clean", 4],
+    ["poa sana leo", "very cool today", 4],
+    ["inaonekana vizuri sana", "it looks very good", 4],
+    ["ajabu sana tukio hili", "this event is very wonderful", 4],
+    ["jamani, mungu wangu", "oh my, my god", 4],
+    ["fanya haraka sasa", "hurry now", 1],
+    ["angalia vizuri hapa", "look carefully here", 1],
+    ["tuta'onana baadaye sana", "we will see each other much later", 8],
+    ["ata'kuja hivi karibuni sana", "she will come very soon", 8],
+    ["tuli'kwenda jana asubuhi", "we went yesterday morning", 8],
+    ["leo ni siku nzuri", "today is a good day", 8],
+    ["tuta'kwenda kesho jioni", "we will go tomorrow evening", 8],
+    ["wakati mzuri wa kupumzika", "a good time to rest", 8],
+    ["hapa ni pazuri sana", "here is very nice", 8],
+    ["pale ni mbali kidogo", "right there is a little far", 8],
+    ["huko kuna watu wengi", "over there there are many people", 8],
+    ["wapi ume'kwenda jana", "where did you go yesterday", 4],
+    ["kwani unaenda wapi sasa", "where are you going now", 4],
+    ["ndani ya nyumba ni baridi", "inside the house it is cold", 8],
+    ["nje ya nyumba ni joto", "outside the house it is hot", 8],
+    ["vipi hali yako leo", "how is your condition today", 4],
+    ["namna gani unafanya kazi hii", "in what way do you do this work", 4],
+    ["nini unataka kununua", "what do you want to buy", 4],
+    ["nani ame'fika hapa", "who has arrived here", 4],
+    ["gani unataka kuchagua", "which one do you want to choose", 4],
+    ["kwa nini ume'fanya hivyo", "why did you do that", 4],
+    ["hii ni yangu", "this is mine", 3],
+    ["ile ni yake", "that is his", 3],
+    ["chai na kahawa", "tea and coffee", 3],
+    ["ama soda au maji", "either soda or water", 3],
+    ["lakini nime'choka sana", "but I am very tired", 3],
+    ["kwa sababu nime'chelewa", "because I am late", 3],
+    ["kama unataka, unaweza", "if you want, you can", 3],
+    ["pia mimi naku'bali", "also I agree", 8],
+    ["hiyo ni nzuri sana", "that one is very good", 3],
+    ["zile ni kubwa sana", "those are very big", 3],
+    ["hizi ni ndogo sana", "these are very small", 3],
+    ["zao ni nzuri sana", "theirs are very good", 3],
+    ["yetu ni kubwa sana", "ours is very big", 3],
+    ["mwanafunzi mchapakazi", "hardworking student", 6],
+    ["daktari bingwa", "expert doctor", 6],
+    ["meza ya mbao", "wooden table", 9],
+    ["matunda matamu", "sweet fruits", 5],
+    ["mboga safi", "clean vegetables", 5],
+    ["pilau la nyama", "meat pilau", 5],
+    ["nguo za hariri", "silk clothes", 9],
+    ["viatu vya ngozi", "leather shoes", 9],
+    ["miguu yangu imechoka", "my legs are tired", 9],
+    ["basi la abiria", "passenger bus", 9],
+    ["hoteli ya kitalii", "tourist hotel", 7],
+    ["pwani ya bahari", "sea coast", 7],
+    ["kushoto kwako", "to your left", 8],
+    ["kulia kwako", "to your right", 7],
+    ["Ali'lia, kulia", "she cried, to the right", 7],
+    ["mbele yako", "in front of you", 7],
+    ["mama mpendwa", "beloved mother", 6],
+    ["baba mkarimu", "generous father", 6],
+    ["mtu mwenye hekima", "person that has wisdom", 6],
+    ["nyumba ya kifahari", "luxurious house", 7],
+    ["chakula cha jioni kitamu", "delicious dinner", 5],
+    ["maji ya mvua safi", "clean rainwater", 7],
+    ["kitabu cha kusisimua", "exciting book", 9],
+    ["gari la michezo haraka", "fast sports car", 9],
+    ["mwalimu mkuu mwenye busara", "head teacher having wisdom", 6],
+    ["soko la samaki lenye harufu", "fish market that has odor", 7],
+    ["rafiki wa kweli mwaminifu", "truly loyal friend", 6],
+    ["ndugu wa damu mpendwa", "beloved blood sibling", 6],
+    ["simba mwenye nguvu mkali", "strong fierce lion", 2],
+    ["tembo dume mkubwa sana", "very large male elephant", 2],
+    ["jina la utani maarufu", "famous nickname", 8],
+    ["asante sana kwa msaada wako", "thank you very much for your help", 4],
+    ["tafadhali fungua mlango", "please open the door", 4],
+    ["ndiyo, nime'elewa vizuri", "yes, I understood well", 4],
+    ["hapana, siwezi kufanya hivyo", "no, I can't do that", 4],
+    ["habari za mchana mwema", "good afternoon", 4],
+    ["sawa, tuta'onana kesho", "okay, we will see each other tomorrow", 4],
+    ["pole sana kwa habari mbaya", "very sorry for the bad news", 4],
+    ["ana'kula matunda mapema", "she eats fruits early", 1],
+    ["ana'kunywa chai moto", "she drinks hot tea", 1],
+    ["ana'kwenda kazi'ni kwa gari", "she goes to work by car", 1],
+    ["ana'kuja na rafiki yake", "she comes with his friend", 1],
+    ["ana'lala usingizi mzito", "she sleeps a deep sleep", 1],
+    ["ana'fanya mazoezi kila asubuhi", "she exercises every morning", 1],
+    ["ana'sema maneno mazuri", "she says nice words", 1],
+    ["ana'sikiliza wimbo m'pya", "she listens to a new song", 1],
+    ["ana'uliza kuhusu bei", "she asks about the price", 1],
+    ["ana'ona ndege anga'ni", "she sees a bird in the sky", 1],
+    ["ana'sikia upepo mkali", "she hears a strong wind", 1],
+    ["ana'kuwa na amani moyo'ni", "she has peace in his heart", 1],
+    ["ana'penda familia yake sana", "she loves his family very much", 1],
+    ["anu'nunua zawadi nzuri", "she buys a nice gift", 1],
+    ["Siku'tarajia hii", "I didn't expect this", 1],
+    ["ana'uza bidhaa soko'ni", "she sells goods at the market", 1],
+    ["ana'pika chakula cha kiswahili", "she cooks Swahili food", 1],
+    ["ana'cheza ngoma usiku", "she dances at night", 1],
+    ["jambo mgeni karibu", "hello guest welcome", 4],
+    ["pona haraka", "get well soon", 4],
+    ["sasa unaendeleaje", "hi, how are you progressing", 4],
+    ["karibu kwenye sherehe", "welcome to the party", 4],
+    ["samahani kwa usumbufu", "sorry for the inconvenience", 4],
+    ["kwaheri, hadi wakati mwingine", "goodbye until next time", 4],
+    ["bei gani kwa kila kitu", "how much for everything", 4],
+    ["hakuna matata kabisa", "no problem at all really", 4],
+    ["hakuna shida yoyote", "no problem whatsoever", 4],
+    ["pole pole tufike salama", "let's go slowly to arrive safely", 4],
+    ["nzuri sana hii picha", "this picture is very good", 4],
+    ["safi sana hii nyumba", "this house is very clean", 4],
+    ["poa sana hali ya hewa", "the weather is very cool", 4],
+    ["inaonekana vizuri sana kutoka hapa", "it looks very good from here", 4],
+    ["ajabu sana tamasha hili", "this festival is very wonderful", 4],
+    ["jamani, nime'shangaa sana!", "oh my, I am very surprised!", 4],
+    ["fanya haraka! njoo hapa!", "hurry! come here!", 1],
+    ["angalia mbele yako", "look ahead of you", 1],
+    ["Angalia huko!", "Look over there!", 1],
+    ["Angalia barabara'ni", "Watch the road", 1],
+    ["Angalia sana", "Look carefully", 1],
+    ["tuta'onana baadaye kidogo", "we will see each other a little later", 8],
+    ["ata'kuja hivi karibuni sana", "she will come very soon", 8],
+    ["tuli'kwenda jana jioni", "we went yesterday evening", 8],
+    ["leo ni siku ya furaha", "today is a happy day", 8],
+    ["tuta'kwenda kesho asubuhi", "we will go tomorrow morning", 8],
+    ["wakati mwafaka wa kupumzika", "an ideal time to rest", 8],
+    ["hapa ni penye amani", "here is peaceful", 8],
+    ["pale ni mahali pazuri", "right there is a nice place", 8],
+    ["huko kuna mandhari nzuri", "over there there is a beautiful view", 8],
+    ["wapi ume'ficha funguo", "where did you hide the keys", 4],
+    ["kwani unaelekea wapi", "where are you heading", 4],
+    ["ndani ya gari ni joto", "inside the car it is hot", 8],
+    ["nje ya mji ni baridi", "outside the city it is cold", 8],
+    ["vipi safari yako ilikuwa", "how was your journey", 4],
+    ["namna gani unafanya kazi hii haraka", "in what way do you do this work quickly", 4],
+    ["nini ume'pika leo", "what did you cook today", 4],
+    ["nani ame'kuja na wewe", "who came with you", 4],
+    ["gani unataka kuvaa", "which one do you want to wear", 4],
+    ["kwa nini ume'lia", "why did you cry", 4],
+    ["hii ni mali yangu", "this is my property", 3],
+    ["ile ni nyumba yake", "that is his house", 3],
+    ["chai na mkate", "tea and bread", 3],
+    ["ama kahawa au juisi", "either coffee or juice", 3],
+    ["lakini nina njaa sana", "but I am very hungry", 3],
+    ["kwa sababu nime'chelewa kazi'ni", "because I am late for work", 3],
+    ["kama unataka, unaweza kuingia", "if you want, you can enter", 3],
+    ["pia mimi nime'furahi", "also I am happy", 8],
+    ["hiyo ni zawadi nzuri sana", "that is a very nice gift", 3],
+    ["zile ni nguo safi sana", "those are very clean clothes", 3],
+    ["hizi ni viatu vi'pya sana", "these are very new shoes", 3],
+    ["zao ni ma'gari mazuri sana", "theirs are very nice cars", 3],
+    ["yetu ni shamba kubwa sana", "ours is a very big farm", 3],
+    ["mwanafunzi mwerevu mchapakazi", "clever hardworking student", 6],
+    ["daktari mahiri bingwa", "skilled expert doctor", 6],
+    ["meza ya vioo", "glass table", 9],
+    ["matunda ya porini matamu", "sweet wild fruits", 5],
+    ["mboga za majani safi", "fresh leafy vegetables", 5],
+    ["pilau la kuku la harufu nzuri", "good smelling chicken pilau", 5],
+    ["nguo za pamba laini", "soft cotton clothes", 9],
+    ["viatu vya michezo", "sports shoes", 9],
+    ["kichwa changu kina'uma sana leo", "my head hurts a lot today", 9],
+    // Tenses (Category 10)
+    ["Ninakula chakula", "I eat food", 10], // Present
+    ["Yeye alikunywa maji", "she drank water", 10], // Past
+    ["Tuta'kwenda soko'ni kesho", "We will go to the market tomorrow", 10], // Future
+    ["Wanafunzi wana'soma vitabu", "Students read books", 10], // Present
+    ["Gari lilienda haraka", "The car went fast", 10], // Past
+    ["Mwalimu ata'sema habari", "The teacher will say hello", 10], // Future
+    ["Rafiki yangu aliona simba", "My friend saw a lion", 10], // Past
+    ["Watapika pilau jikoni", "They will cook pilau in the kitchen", 10], // Future
+    ["Mama ana'penda maua", "Mother likes flowers", 10], // Present
+    ["tuli'lala mapema jana", "We slept early yesterday", 10], // Past
+    ["nita'kununua matunda", "I will buy fruits", 10], // Future
+    ["Mtu ana'taka chai", "A person wants tea", 10], // Present
+    ["Daktari alitoa dawa", "The doctor gave medicine", 10], // Past
+    ["Tuta'cheza mpira pwani", "We will play soccer on the coast", 10], // Future
+    ["Walitembea mtoni", "They walked by the river", 10], // Past
+    ["nita'vaa nguo m'pya", "I will wear new clothes", 10], // Future
+    ["Mtoto alicheza na toy", "The child played with a toy", 10], // Past
+    ["Tuta'tumia kijiko na sahani", "We will use a spoon and plate", 10], // Future
+    ["Mvua inanyesha sasa", "The rain is falling now", 10], // Present
+    ["Waliketi kwenye viti", "They sat on the chairs", 10], // Past
+    ["nita'pata kahawa tamu", "I will get sweet coffee", 10], // Future
+    ["Mzee ana'tembea polepole", "The elder walks slowly", 10], // Present
+    ["Tuta'kuwa na furaha sana", "We will be very happy", 10], // Future
+    ["Nina'kula chakula polepole", "I eat food slowly", 10],
+    ["Ali'kunywa maji haraka", "she drank water quickly", 10],
+    ["Tuta'kwenda soko'ni kesho asubuhi", "We will go to the market tomorrow morning", 10],
+    ["Wanafunzi wana'soma vitabu vizuri", "Students read books well", 10],
+    ["Gari lilienda haraka sana", "The car went very fast", 10],
+    ["Mwalimu ata'sema habari kwa sauti kubwa", "The teacher will say hello loudly", 10],
+    ["Rafiki yangu aliona simba pale msituni", "My friend saw a lion there in the forest", 10],
+    ["Watapika pilau jikoni mapema", "They will cook pilau in the kitchen early", 10],
+    ["Mama ana'penda maua sana", "Mother likes flowers very much", 10],
+    ["tuli'lala mapema sana jana", "We slept very early yesterday", 10],
+    ["nita'kununua matunda baadaye", "I will buy fruits later", 10],
+    ["Mtu ana'taka chai hapa", "A person wants tea here", 10],
+    ["Daktari alitoa dawa kwa makini", "The doctor gave medicine carefully", 10],
+    ["Tuta'cheza mpira pwani kwa furaha", "We will play soccer on the coast happily", 10],
+    ["Jua lina'angaza sana leo", "The sun shines very brightly today", 10],
+    ["Walitembea mtoni polepole sana", "They walked by the river very slowly", 10],
+    ["nita'vaa nguo m'pya kesho kutwa", "I will wear new clothes the day after tomorrow", 10],
+    ["Mkulima ana'panda mboga kila siku", "The farmer plants vegetables every day", 10],
+    ["Mtoto alicheza na toy kwa muda mrefu", "The child played with a toy for a long time", 10],
+    ["Tuta'tumia kijiko na sahani pamoja", "We will use a spoon and plate together", 10],
+    ["Mvua inanyesha sana sasa", "The rain is falling heavily now", 10],
+    ["Waliketi kwenye viti kimya kimya", "They sat on the chairs quietly", 10],
+    ["nita'pata kahawa tamu sana hivi karibuni", "I will get very sweet coffee soon", 10],
+    ["Mzee ana'tembea polepole sana kila asubuhi", "The elder walks very slowly every morning", 10],
+    ["Kijana alikimbia haraka sana jana usiku", "The youth ran very fast last night", 10],
+    ["Tuta'kuwa na furaha sana hapo baadaye", "We will be very happy there later", 10]
+    ];
+
+
+
+
+    let availableWords = [];
+    let currentWord;
+    let previousWordsDiv;
+    let speechUtterance;
+    let wordsShown = [];
+    let wordsWrong = [];
+    let categoryCheckboxesDiv;
+    let invertLanguagesCheckbox;
+    let selectedCategories = [];
+    let sameCategoryCount = 0;
+    let wordCounterDiv;
+    let totalCards = 0;
+    let cardsPassed = 0;
+
+    function updateWordCounter() {
+        // Update the counter with total cards and cards passed
+        wordCounterDiv.innerHTML = `
+            <span>Total Cards: ${totalCards}</span> | 
+            <span>Cards Passed: ${cardsPassed}</span>
+        `;
+    }
+
+    function populateCheckboxes() {
+        // Add "All" checkbox
+        let allLabel = document.createElement("label");
+        let allCheckbox = document.createElement("input");
+        allCheckbox.type = "checkbox";
+        allCheckbox.id = "allCategories";
+        allCheckbox.checked = true;
+        allLabel.appendChild(allCheckbox);
+        allLabel.appendChild(document.createTextNode("All"));
+        categoryCheckboxesDiv.appendChild(allLabel);
+
+        // Add category checkboxes
+        categories.forEach((category, index) => {
+            let label = document.createElement("label");
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = index + 1;
+            checkbox.checked = checkbox.value != 10;
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(category));
+            categoryCheckboxesDiv.appendChild(label);
+        });
+
+        // "All" checkbox event listener
+        allCheckbox.addEventListener("change", function() {
+            let checkboxes = categoryCheckboxesDiv.querySelectorAll("input[type='checkbox']:not(#allCategories)");
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+                if (!this.Checked && checkbox.value == 10)
+                    checkbox.checked = true;
+            });
+            filterWordsByCategory();
+        });
+    }
+
+    function filterWordsByCategory() {
+        selectedCategories = [];
+        let checkboxes = categoryCheckboxesDiv.querySelectorAll("input[type='checkbox']:not(#allCategories):checked");
+        checkboxes.forEach(checkbox => {
+            selectedCategories.push(parseInt(checkbox.value));
+        });
+
+        if (selectedCategories.length === categories.length) {
+            availableWords = vocabulary.slice();
+        } else {
+            availableWords = vocabulary.filter(word => selectedCategories.includes(word[2]));
+        }
+        
+        // Update the total cards count
+        totalCards = availableWords.length;
+        
+        // Reset counters when changing categories
+        wordsShown = [];
+        wordsWrong = [];
+        cardsPassed = 0;
+        
+        updateWordCounter();
+    }
+
+    function getRandomWord() {
+        if (wordsWrong.length >= 7 && wordsWrong[wordsWrong.length - 7]) {
+            return wordsShown[wordsShown.length - 7];
+        } else if (availableWords.length > 0) {
+            count = 0;
+            let randomIndex;
+            let selectedWord;
+            while(count < selectedCategories.length) {
+                randomIndex = Math.floor(Math.random() * availableWords.length);
+                selectedWord = availableWords[randomIndex];
+                // try to stick to same category, as repeated words come back, words in a difficult category will come back
+                if (!currentWord || selectedWord[2] == currentWord[2]) {
+                    sameCategoryCount += 1;
+                    break;  // found same category
+                }
+                if (sameCategoryCount >= 4) {
+                    sameCategoryCount = 0;
+                    break;
+                }
+                count+=1;
+            }
+            availableWords.splice(randomIndex, 1);
+            return selectedWord;
+        } else {
+            previousWordsDiv.innerHTML += "<p>Vocabulary Exhausted!</p>";
+            document.getElementById("dontKnowButton").style.display = 'none';
+            document.getElementById("knowButton").style.display = 'none';
+            return null;
+        }
+    }
+
+    function speakWord(word) {
+        if ('speechSynthesis' in window) {
+            speechUtterance = new SpeechSynthesisUtterance(word);
+            speechUtterance.lang = invertLanguagesCheckbox.checked ? 'en-US' : 'pt-BR';
+            //window.speechSynthesis.speak(speechUtterance);
+        } else {
+            console.error("Speech Synthesis not supported");
+        }
+    }
+
+    function displayWord() {
+        currentWord = getRandomWord();
+        if (currentWord) {
+            let displayedWord = invertLanguagesCheckbox.checked ? currentWord[1] : currentWord[0];
+            previousWordsDiv.innerHTML += `<p class="category-${currentWord[2]}">${displayedWord} (${categories[currentWord[2] - 1]})</p>`;
+            speakWord(displayedWord);
+            previousWordsDiv.scrollTop = previousWordsDiv.scrollHeight;
+        }
+    }
+
+    function Advance(knew) {
+        let displayedWord = invertLanguagesCheckbox.checked ? currentWord[1] : currentWord[0];
+        let translation = invertLanguagesCheckbox.checked ? currentWord[0] : currentWord[1];
+        let previousWordHtml;
+
+        if (knew) {
+            previousWordHtml = `<p class="category-${currentWord[2]}">${displayedWord} - ${translation}</p>`;
+            // Increment Cards Passed only when Remove is clicked
+            cardsPassed++;
+            updateWordCounter();
+        } else {
+            previousWordHtml = `<p class="category-${currentWord[2]}">&lt;- ${displayedWord} - ${translation}</p>`;
+        }
+
+        // Replace the previous word with the updated version
+        let previousWords = previousWordsDiv.innerHTML.split('</p>');
+        previousWords[previousWords.length - 2] = previousWordHtml;
+        previousWordsDiv.innerHTML = previousWords.join('</p>');
+
+        previousWordsDiv.scrollTop = previousWordsDiv.scrollHeight;
+        wordsShown.push(currentWord);
+        wordsWrong.push(!knew);
+        displayWord();
+    }
+
+    function knowWord() {
+        Advance(true);
+    }
+
+    function dontKnowAction() {
+        Advance(false);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        previousWordsDiv = document.getElementById("previousWords");
+        categoryCheckboxesDiv = document.getElementById("categoryCheckboxes");
+        wordCounterDiv = document.getElementById("wordCounter");
+        populateCheckboxes();
+        filterWordsByCategory();
+        invertLanguagesCheckbox = document.getElementById("invertLanguages");
+        updateWordCounter();
+        displayWord();
+
+        categoryCheckboxesDiv.addEventListener("change", function(event) {
+            if (event.target.id !== "allCategories") {
+                filterWordsByCategory();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "ArrowLeft") {
+                document.getElementById("dontKnowButton").click();
+            } else if (event.key === "ArrowRight") {
+                document.getElementById("knowButton").click();
+            } else if (event.key === "ArrowUp") {
+                if (speechUtterance) {
+                    window.speechSynthesis.speak(speechUtterance);
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>
