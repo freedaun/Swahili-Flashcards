@@ -4,7 +4,7 @@ This is a page which allows you to practice Swahili in a very uncomplicated way,
 
 <img src="https://github.com/user-attachments/assets/2495b776-6483-4f6b-bff3-d7165043ebb7" width="600">
 
-You get simple sentences from one or more categories, and see if you already understand it. 
+You get a simple sentence from one or more categories, for you to see if you already understand it. 
 
 If you do, click `Remove` or type `RightArrow`, and the sentence will not repeat. 
 
