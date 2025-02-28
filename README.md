@@ -16,9 +16,11 @@ When you don't understand a word, consult an AI to explain the word using the fo
 
     Translate to and from Swahili, prefer the kenyan dialect. Add a little bit of grammatical and word explanations.
 
-Prefer Kenyan, because it is simpler. 
+Prefer the Kenyan dialect, because it is simpler. 
 
 You can select cards from one or more categories. Progress is reported. 
+
+Click `Invert` to go from English to Swhahili instead. 
 
 To add words or sentences, open the file in a text editor, locate 'vocabulary[]', prompt an AI to give you the data you need and add them as entries. 
 
