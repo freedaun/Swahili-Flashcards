@@ -16,7 +16,7 @@ When you don't understand a word, consult an AI to explain the word using the fo
 
     Translate to and from Swahili, prefer the kenyan dialect. Add a little bit of grammatical and word explanations.
 
-Prefer the Kenyan dialect, because it is simpler. 
+This prefers the Kenyan dialect, because it is simpler. 
 
 You can select cards from one or more categories. Progress is reported. 
 
@@ -26,4 +26,5 @@ To add words or sentences, open the file in a text editor, locate `vocabulary[]`
 
 Verbs have their root separated by a single quote, to show the conjugation, ex: `ana'lia`. The same was done for nouns when they are modified, like `kazi'ni`. 
 
+Randomization also affects the last 2 categories, Conjugated and Negated, as are generated on the fly for each session. Likewise possessives are randomized in phrases that contain them. 
 
