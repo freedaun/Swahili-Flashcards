@@ -61,8 +61,8 @@
 
 
 
-    let categories = ["Actions", "Animals", "Connections", "Expressions & Questions", 
-        "Food", "People", "Places & Nature", "Qualities & Time", "Things", "eXtra"];
+let categories = ["Actions", "Animals", "Connections", "Expressions & Questions", 
+    "Food", "People", "Places & Nature", "Qualities & Time", "Things", "eXtra", "Verbs", "Conjugated Verbs"];
         
 let vocabulary = [
     ["mtu mmoja", "one person", 3],
@@ -110,6 +110,7 @@ let vocabulary = [
     ["ana'kwenda soko'ni kila siku", "she goes to the market every day", 1],
     ["ana'kuja nyumbani usiku", "she comes home at night", 1],
     ["ana'lala mapema sana", "she sleeps very early", 1],
+    ["Ulilala vizuri?", "did you sleep well?", 1],
     ["ana'fanya kazi kwa bidii", "she works hard", 1],
     ["ana'sema ukweli daima", "she always tells the truth", 1],
     ["ana'sikiliza muziki kwa makini", "she listens to music carefully", 1],
@@ -146,6 +147,12 @@ let vocabulary = [
     ["tuta'kwenda kesho jioni", "we will go tomorrow evening", 8],
     ["wakati mzuri wa kupumzika", "a good time to rest", 8],
     ["hapa ni pazuri sana", "here is very nice", 8],
+    ["Sina hakika", "I'm not sure", 4],
+    ["Sijui", "I don't know", 4],
+    ["Sielewi", "I don't understand", 4],
+    ["Habari gani?", "How are you?", 4],
+    ["Hujambo? Hamjambo?", "How are you? How are You?", 4],
+    ["Sijambo, hatujambo", "I'm fine, we're fine", 4],
     ["pale ni mbali kidogo", "right there is a little far", 8],
     ["huko kuna watu wengi", "over there there are many people", 8],
     ["wapi ume'kwenda jana", "where did you go yesterday", 4],
@@ -207,12 +214,14 @@ let vocabulary = [
     ["ndiyo, nime'elewa vizuri", "yes, I understood well", 4],
     ["hapana, siwezi kufanya hivyo", "no, I can't do that", 4],
     ["habari za mchana mwema", "good afternoon", 4],
+    ["Siku njema" , "good day", 4],
     ["sawa, tuta'onana kesho", "okay, we will see each other tomorrow", 4],
     ["pole sana kwa habari mbaya", "very sorry for the bad news", 4],
     ["ana'kula matunda mapema", "she eats fruits early", 1],
     ["ana'kunywa chai moto", "she drinks hot tea", 1],
+    ["Karibu tena", "Welcome back", 1],
     ["ana'kwenda kazi'ni kwa gari", "she goes to work by car", 1],
-    ["ana'kuja na rafiki yake", "she comes with his friend", 1],
+    ["ana'kuja na rafiki yake", "she comes with her friend", 1],
     ["ana'lala usingizi mzito", "she sleeps a deep sleep", 1],
     ["ana'fanya mazoezi kila asubuhi", "she exercises every morning", 1],
     ["ana'sema maneno mazuri", "she says nice words", 1],
@@ -226,22 +235,27 @@ let vocabulary = [
     ["Siku'tarajia hii", "I didn't expect this", 1],
     ["ana'uza bidhaa soko'ni", "she sells goods at the market", 1],
     ["ana'pika chakula cha kiswahili", "she cooks Swahili food", 1],
-    ["ana'cheza ngoma usiku", "she dances at night", 1],
+    ["ana'cheza ngoma usiku", "she is playing the drum at night", 1],
     ["jambo mgeni karibu", "hello guest welcome", 4],
     ["pona haraka", "get well soon", 4],
-    ["sasa unaendeleaje", "hi, how are you progressing", 4],
+    ["Sasa una'ende'le'aje? (Naendelea) vizuri", "Now, how are you doing? (I am doing) well", 4],
     ["karibu kwenye sherehe", "welcome to the party", 4],
     ["samahani kwa usumbufu", "sorry for the inconvenience", 4],
     ["kwaheri, hadi wakati mwingine", "goodbye until next time", 4],
     ["bei gani kwa kila kitu", "how much for everything", 4],
-    ["hakuna matata kabisa", "no problem at all really", 4],
+    ["Hii ni bei gani?", "How much is this?", 4],
+    ["hakuna matata kabisa", "no problem at all", 4],
     ["hakuna shida yoyote", "no problem whatsoever", 4],
     ["pole pole tufike salama", "let's go slowly to arrive safely", 4],
+    ["ina lako nani?", "What's your name?", 4],
+    ["Jina langu ni Pete", "My name is Pete", 4],
+    ["lala salama", "sleep well", 4],
+    ["Bado kidogo", "not yet (a little longer)", 4],
     ["nzuri sana hii picha", "this picture is very good", 4],
     ["safi sana hii nyumba", "this house is very clean", 4],
     ["poa sana hali ya hewa", "the weather is very cool", 4],
     ["inaonekana vizuri sana kutoka hapa", "it looks very good from here", 4],
-    ["ajabu sana tamasha hili", "this festival is very wonderful", 4],
+    ["hii ni ajabu sana!", "this is very wonderful", 4],
     ["jamani, nime'shangaa sana!", "oh my, I am very surprised!", 4],
     ["fanya haraka! njoo hapa!", "hurry! come here!", 1],
     ["angalia mbele yako", "look ahead of you", 1],
@@ -297,19 +311,19 @@ let vocabulary = [
     ["Gari lilienda haraka", "The car went fast", 10], // Past
     ["Mwalimu ata'sema habari", "The teacher will say hello", 10], // Future
     ["Rafiki yangu aliona simba", "My friend saw a lion", 10], // Past
-    ["Watapika pilau jikoni", "They will cook pilau in the kitchen", 10], // Future
+    ["Watapika pilau jiko'ni", "They will cook pilau in the kitchen", 10], // Future
     ["Mama ana'penda maua", "Mother likes flowers", 10], // Present
     ["tuli'lala mapema jana", "We slept early yesterday", 10], // Past
     ["nita'kununua matunda", "I will buy fruits", 10], // Future
     ["Mtu ana'taka chai", "A person wants tea", 10], // Present
     ["Daktari alitoa dawa", "The doctor gave medicine", 10], // Past
     ["Tuta'cheza mpira pwani", "We will play soccer on the coast", 10], // Future
-    ["Walitembea mtoni", "They walked by the river", 10], // Past
+    ["Wali'tembea mtoni", "They walked by the river", 10], // Past
     ["nita'vaa nguo m'pya", "I will wear new clothes", 10], // Future
     ["Mtoto alicheza na toy", "The child played with a toy", 10], // Past
     ["Tuta'tumia kijiko na sahani", "We will use a spoon and plate", 10], // Future
     ["Mvua inanyesha sasa", "The rain is falling now", 10], // Present
-    ["Waliketi kwenye viti", "They sat on the chairs", 10], // Past
+    ["Wali'keti kwenye viti", "They sat on the chairs", 10], // Past
     ["nita'pata kahawa tamu", "I will get sweet coffee", 10], // Future
     ["Mzee ana'tembea polepole", "The elder walks slowly", 10], // Present
     ["Tuta'kuwa na furaha sana", "We will be very happy", 10], // Future
@@ -320,7 +334,7 @@ let vocabulary = [
     ["Gari lilienda haraka sana", "The car went very fast", 10],
     ["Mwalimu ata'sema habari kwa sauti kubwa", "The teacher will say hello loudly", 10],
     ["Rafiki yangu aliona simba pale msituni", "My friend saw a lion there in the forest", 10],
-    ["Watapika pilau jikoni mapema", "They will cook pilau in the kitchen early", 10],
+    ["Watapika pilau jiko'ni mapema", "They will cook pilau in the kitchen early", 10],
     ["Mama ana'penda maua sana", "Mother likes flowers very much", 10],
     ["tuli'lala mapema sana jana", "We slept very early yesterday", 10],
     ["nita'kununua matunda baadaye", "I will buy fruits later", 10],
@@ -328,18 +342,256 @@ let vocabulary = [
     ["Daktari alitoa dawa kwa makini", "The doctor gave medicine carefully", 10],
     ["Tuta'cheza mpira pwani kwa furaha", "We will play soccer on the coast happily", 10],
     ["Jua lina'angaza sana leo", "The sun shines very brightly today", 10],
-    ["Walitembea mtoni polepole sana", "They walked by the river very slowly", 10],
+    ["Wali'tembea mtoni polepole sana", "They walked by the river very slowly", 10],
     ["nita'vaa nguo m'pya kesho kutwa", "I will wear new clothes the day after tomorrow", 10],
     ["Mkulima ana'panda mboga kila siku", "The farmer plants vegetables every day", 10],
     ["Mtoto alicheza na toy kwa muda mrefu", "The child played with a toy for a long time", 10],
     ["Tuta'tumia kijiko na sahani pamoja", "We will use a spoon and plate together", 10],
     ["Mvua inanyesha sana sasa", "The rain is falling heavily now", 10],
-    ["Waliketi kwenye viti kimya kimya", "They sat on the chairs quietly", 10],
+    ["Wali'keti kwenye viti kimya kimya", "They sat on the chairs quietly", 10],
     ["nita'pata kahawa tamu sana hivi karibuni", "I will get very sweet coffee soon", 10],
     ["Mzee ana'tembea polepole sana kila asubuhi", "The elder walks very slowly every morning", 10],
     ["Kijana alikimbia haraka sana jana usiku", "The youth ran very fast last night", 10],
-    ["Tuta'kuwa na furaha sana hapo baadaye", "We will be very happy there later", 10]
+    ["Itakuwa poa sana!", "It will be very cool!", 10],
+    ["ninanunua, una uza", "I buy, you sell", 11],
+    ["anafunga, tunafungua", "she closes, we open", 11],
+    ["wanapenda, mimi nachukia", "They love, I hate", 11],
+    ["unataka kuingia, yeye anatoka", "You want to enter, she exits", 11],
+    ["walianza, tunamaliza", "They started, we finish", 11],
+    ["nitapanda, watashuka", "I will go up, they go down", 11],
+    ["mnavuta, wao wanasukuma", "You (pl.) pull, they push", 11],
+    ["utatoa, nitachukua", "You will give, I will take", 11],
+    ["wanajenga, tunaharibu", "They build, we destroy", 11],
+    ["unaongeza, mimi napungua", "You increase, I decrease", 11],
+    ["mtavaa, atavua", "You (pl.) will wear, she undresses", 11],
+    ["unalala, ninaamka", "You sleep, I wake up", 11],
+    ["unatafuta, atapoteza", "You find, she loses", 11],
+    ["tunataka kuweka, wataondoa", "We want to put, they remove", 11],
+    ["wanacheka, tunalia", "They laugh, we cry", 11],
+    ["nitakaa, wao wanasimama", "I will sit, they stand", 11],
+    ["atakimbia, tunatembea", "she will run, we walk", 11],
+    ["unaongea, mimi nasikiliza", "You speak, I listen", 11],
+    ["nitafundisha, wanajifunza", "I will teach, they learn", 11],
+    ["unasoma, ninaandika", "You read, I write", 11],
+    ["atasafisha, wao wanachafu", "she will clean, they dirty", 11],
+    ["utaleta, wanapleka", "You will bring, they take", 11],
+    ["atakata, tunaunganisha", "she will cut, we join", 11],
+    ["tunapika, wao wanakula", "We cook, they eat", 11],
+    ["utaleta, wanarudisha", "You will bring, they return", 11],
+    ["nitashinda, watashindwa", "I will win, they will lose", 11],
+    ["utauliza, nitajibu", "You will ask, I will answer", 11],
+    ["wanaamini, mimi natia shaka", "They believe, I doubt", 11],
+    ["tutahifadhi, wao wanatumia", "We will save, they use", 11],
+    ["utapata, atakosa", "You will get, she misses", 11]
+];
+
+
+
+    // Define regular verb roots
+    const regularVerbs = [
+        { root: "som", english: "read", past: "read" },
+        { root: "pik", english: "cook", past: "cooked" },
+        { root: "chez", english: "play", past: "played" },
+        { root: "fany", english: "do", past: "did" },
+        { root: "end", english: "go", past: "went" },
+        { root: "kul", english: "eat", past: "ate" },
+        { root: "fung", english: "close", past: "closed" },
+        { root: "omb", english: "pray", past: "prayed" },
+        { root: "lal", english: "sleep", past: "slept" },
+        { root: "fik", english: "arrive", past: "arrived" },
+        { root: "kimbi", english: "run", past: "ran" },
+        { root: "tembe", english: "walk", past: "walked" },
+        { root: "imb", english: "sing", past: "sang" },
+        { root: "andik", english: "write", past: "wrote" },
+        { root: "nunua", english: "buy", past: "bought" }
     ];
+
+    // Irregular verbs (stem forms differ from regular patterns)
+    const irregularVerbs = [
+        { 
+            root: "ku'wa", 
+            english: {
+                present: ["am","are","is","are","are","are"],
+                past: ["was","were","was","were","were","were"],
+                future: ["will be","will be","will be","will be","will be","will be"],
+            },
+            tenses: {
+                present: {
+                    // "ni": "ni", "u": "u", "a": "yu", "tu": "tu", "m": "m", "wa": "wa"
+                    "ni": "mimi ni", "u": "wewe ni", "a": "yeye ni", "tu": "sisi ni", "m": "ninyini", "wa": "wao ni"
+                },
+                past: {
+                    "ni": "nili'kuwa", "u": "uli'kuwa", "a": "ali'kuwa", "tu": "tuli'kuwa", "m": "mli'kuwa", "wa": "wali'kuwa"
+                },
+                future: {
+                    "ni": "nita'kuwa", "u": "uta'kuwa", "a": "ata'kuwa", "tu": "tuta'kuwa", "m": "mta'kuwa", "wa": "wata'kuwa"
+                }
+            }
+        },
+        { 
+            root: "ku'ja", 
+            english: {
+                present: ["come","come","comes","come","come","come"],
+                past: ["came","came","came","come","come","come"],
+                future: ["will come","will come","will come","will come","will come","will come"],
+            },
+            tenses: {
+                present: {
+                    "ni": "nina'kuja", "u": "una'kuja", "a": "ana'kuja", "tu": "tuna'kuja", "m": "mna'kuja", "wa": "wana'kuja"
+                },
+                past: {
+                    "ni": "nili'kuja", "u": "uli'kuja", "a": "ali'kuja", "tu": "tuli'kuja", "m": "mli'kuja", "wa": "wali'kuja"
+                },
+                future: {
+                    "ni": "nita'kuja", "u": "uta'kuja", "a": "ata'kuja", "tu": "tuta'kuja", "m": "mta'kuja", "wa": "wata'kuja"
+                }
+            }
+        },
+        { 
+            root: "ku'wa", 
+            english: {
+                present: ["have","have","has","have","had","have"],
+                past: ["have","had","have","have","had","have"],
+                future: ["will have","will have","will have","will have","will have","will have"],
+            },
+            tenses: {
+                present: {
+                    "ni": "nina", "u": "una", "a": "ana", "tu": "tuna", "m": "mna", "wa": "wana"
+                },
+                past: {
+                    "ni": "nili'kuwa", "u": "uli'kuwa", "a": "ali'kuwa", "tu": "tuli'kuwa", "m": "mli'kuwa", "wa": "wali'kuwa"
+                },
+                future: {
+                    "ni": "nita'kuwa", "u": "uta'kuwa", "a": "ata'kuwa", "tu": "tuta'kuwa", "m": "mta'kuwa", "wa": "wata'kuwa"
+                }
+            }
+        }
+    ];
+
+    // Subject prefixes for different persons
+    const subjectPrefixes = {
+        "ni": "I",
+        "u": "you",
+        "a": "she",
+        "tu": "we",
+        "m": "You",
+        "wa": "they"
+    };
+    const subjectIndex = {
+        "ni": 0,
+        "u": 1,
+        "a": 2,
+        "tu": 3,
+        "m": 4,
+        "wa": 5,
+    };
+
+    // Tense markers
+    const tenseMarkers = {
+        "present": {
+            prefix: "na",
+            english: ["am","is","is","are","are","are"],
+            example: "ninasoma - I am reading"
+        },
+        "past": {
+            prefix: "li",
+            english: ["did","did","did","did","did","did"],
+            example: "nilisoma - I read/I did read"
+        },
+        "future": {
+            prefix: "ta",
+            english: ["will","will","will","will","will","will"],
+            example: "nitasoma - I will read"
+        }
+    };
+
+
+    function filterUniqueFirstElement(arr) {
+      const seen = new Map();
+      return arr.filter(item => {
+        if (!seen.has(item[0])) {
+          seen.set(item[0], item);
+          return true;
+        }
+        return false;
+      });
+    }
+    
+    // Function to generate conjugated verb forms
+    function generateConjugatedVerbs() {
+        var conjugatedVerbs = [];
+        
+        // Regular verb conjugations
+        regularVerbs.forEach(verb => {
+            // For each verb, generate a few random conjugations
+            Object.keys(subjectPrefixes).forEach(subject => {
+                Object.keys(tenseMarkers).forEach(tense => {
+                    // Only generate some combinations (not all possible ones)
+                    if (Math.random() < 0.07) {
+                        // Get marker for tense
+                        const tenseMarker = tenseMarkers[tense].prefix;
+                        const isubject = subjectIndex[subject];
+ 
+                        // Create conjugated form
+                        let conjugatedSwahili = "";
+                        let conjugatedEnglish = "";
+                        
+                        // Build Swahili conjugated form
+                        conjugatedSwahili = subject + tenseMarker + verb.root + "a";
+                        
+                        // Build English translation
+                        //console.log(verb);
+                        conjugatedEnglish = subjectPrefixes[subject] + " " + 
+                                           (tense === "present" ?   tenseMarkers[tense].english[isubject] + " " + verb.english.replace(/e$/, '') + "ing" : 
+                                            //tense === "past" ? verb.english + "ed" : 
+                                            tense === "past" ?                                                    verb.past : 
+                                                                    tenseMarkers[tense].english[isubject] + " " + verb.english);
+                                                
+                        // Add to list
+                        conjugatedVerbs.push([conjugatedSwahili, conjugatedEnglish, 12]);
+                    }
+                });
+            });
+        });
+        
+        //console.log(conjugatedVerbs);
+        
+        // Irregular verb conjugations (25% of all verb entries)
+        const irregularVerbCount = Math.floor(conjugatedVerbs.length * 0.25); // 25% of total entries
+        
+        for (let i = 0; i < irregularVerbCount; i++) {
+            const verb = irregularVerbs[Math.floor(Math.random() * irregularVerbs.length)];
+            const tense = Object.keys(tenseMarkers)[Math.floor(Math.random() * Object.keys(tenseMarkers).length)];
+            const isubject = Math.floor(Math.random() * Object.keys(subjectPrefixes).length);
+            const subject = Object.keys(subjectPrefixes)[isubject];
+            
+            let conjugatedSwahili = verb.tenses[tense][subject];
+            
+            let english = verb.english[tense];
+            english = (Array.isArray(english) ?english[isubject] :english);
+            
+
+            let conjugatedEnglish = subjectPrefixes[subject] + " " + english;
+            //console.log(conjugatedEnglish)
+            
+            // Add to list
+            conjugatedVerbs.push([conjugatedSwahili, conjugatedEnglish, 12]);
+        }
+        
+        conjugatedVerbs = filterUniqueFirstElement(conjugatedVerbs);
+        
+        //console.log(conjugatedVerbs);
+        
+        return conjugatedVerbs;
+    }
+
+    // Generate conjugated verbs and add them to vocabulary
+    function updateVocabularyWithVerbs() {
+        const conjugatedVerbs = generateConjugatedVerbs();
+        vocabulary = vocabulary.concat(conjugatedVerbs);
+        conjugatedVerbCount = conjugatedVerbs.length;
+        //console.log(conjugatedVerbCount);
+    }
 
 
 
@@ -357,6 +609,7 @@ let vocabulary = [
     let wordCounterDiv;
     let totalCards = 0;
     let cardsPassed = 0;
+    let conjugatedVerbCount = 0;
 
     function updateWordCounter() {
         // Update the counter with total cards and cards passed
@@ -449,9 +702,6 @@ let vocabulary = [
             availableWords.splice(randomIndex, 1);
             return selectedWord;
         } else {
-            previousWordsDiv.innerHTML += "<p>Vocabulary Exhausted!</p>";
-            document.getElementById("dontKnowButton").style.display = 'none';
-            document.getElementById("knowButton").style.display = 'none';
             return null;
         }
     }
@@ -460,7 +710,7 @@ let vocabulary = [
         if ('speechSynthesis' in window) {
             speechUtterance = new SpeechSynthesisUtterance(word);
             speechUtterance.lang = invertLanguagesCheckbox.checked ? 'en-US' : 'pt-BR';
-            //window.speechSynthesis.speak(speechUtterance);
+            //window.speechSynthesis.speak(speechUtterance);    // swahili spees is too bad to always sound
         } else {
             console.error("Speech Synthesis not supported");
         }
@@ -473,10 +723,24 @@ let vocabulary = [
             previousWordsDiv.innerHTML += `<p class="category-${currentWord[2]}">${displayedWord} (${categories[currentWord[2] - 1]})</p>`;
             speakWord(displayedWord);
             previousWordsDiv.scrollTop = previousWordsDiv.scrollHeight;
+        } else {
+            previousWordsDiv.innerHTML += `<p align='center'>=== ${totalCards} Cards Vocabulary Exhausted! ===</p>`;
+            previousWordsDiv.scrollTop = previousWordsDiv.scrollHeight;
+            //document.getElementById("dontKnowButton").style.display = 'none';
+            //document.getElementById("knowButton").style.display = 'none';
+            return null;
         }
     }
 
     function Advance(knew) {
+        if (currentWord === null) {
+            // vocabulary was exhausted, so restart with new set of conjugations
+            vocabulary = vocabulary.slice(0, -conjugatedVerbCount);
+            updateVocabularyWithVerbs();
+            filterWordsByCategory();
+            displayWord();
+            return;
+        }
         let displayedWord = invertLanguagesCheckbox.checked ? currentWord[1] : currentWord[0];
         let translation = invertLanguagesCheckbox.checked ? currentWord[0] : currentWord[1];
         let previousWordHtml;
@@ -510,6 +774,9 @@ let vocabulary = [
     }
 
     document.addEventListener("DOMContentLoaded", function() {
+        // Generate verb conjugations and add to vocabulary
+        updateVocabularyWithVerbs();
+        
         previousWordsDiv = document.getElementById("previousWords");
         categoryCheckboxesDiv = document.getElementById("categoryCheckboxes");
         wordCounterDiv = document.getElementById("wordCounter");
