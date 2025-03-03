@@ -2,7 +2,7 @@
 
 This is a page which allows you to practice Swahili in a very uncomplicated way, so you can focus on learning. 
 
-<img src="https://github.com/user-attachments/assets/2495b776-6483-4f6b-bff3-d7165043ebb7" width="600">
+<img src="https://github.com/user-attachments/assets/ba00a8bb-820e-46ab-bfc4-fa288574ec3e" width="600">
 
 You get a simple sentence from one or more categories, for you to see if you already understand it. 
 
