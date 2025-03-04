@@ -1086,9 +1086,7 @@
                 for (const oldPossessive of possessiveList) {
                     const regex = new RegExp(`\\b${oldPossessive}'?s?\\b`, 'gi');
                     if (regex.test(englishPhrase)) {
-console.log(englishPhrase, ": ", oldPossessive, " => ", possessiveList[newIndex]);
                         englishPhrase = englishPhrase.replace(regex, possessiveList[newIndex]);
-console.log(englishPhrase);
                         englishReplaced = true;
                         break;
                     }
