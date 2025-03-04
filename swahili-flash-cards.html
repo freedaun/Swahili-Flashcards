@@ -374,6 +374,10 @@
         ["Tuta'kuwa na furaha sana", "We will be very happy", 7],
         
         // Category 8: Glue words 
+        ["Atarudi hivi karibuni", "She'll be back soon", 8],
+        ["Sina mtandao", "I don't have connectivity", 8],
+        ["Sina intaneti sasa hivi", "I don't have internet right now", 8],
+        ["Nitalipa nikifika nyumbani", "I'll pay when I get home", 8],
         ["hii ni yangu", "this is mine", 8],
         ["ile ni yake", "that is his", 8],
         ["chai na kahawa", "tea and coffee", 8],
@@ -402,17 +406,18 @@
         ["yetu ni shamba kubwa sana", "ours is a very big farm", 8],
         
         // Category 9: Verb Pairs 
+        ["wewe kaa, lakini nasimama", "", 8],
         ["ninanunua, lakini una uza", "I buy, but you sell", 9],
         ["anafunga, kwa sababu tunafungua", "She closes, because we open", 9],
         ["wanapenda, ingawa mimi nachukia", "They love, although I hate", 9],
         ["unataka kuingia, lakini yeye anatoka", "You want to enter, but she exits", 9],
         ["walianza, basi tunamaliza", "They started, so we finish", 9],
         ["nitapanda, wakati watashuka", "I will go up, while they go down", 9],
-        ["mnavuta, wakati wao wanasukuma", "You (pl.) pull, while they push", 9],
+        ["mnavuta, wakati wao wanasukuma", "You (pl) pull, while they push", 9],
         ["utatoa, kisha nitachukua", "You will give, then I will take", 9],
         ["wanajenga, lakini tunaharibu", "They build, but we destroy", 9],
         ["unaongeza, ingawa mimi napungua", "You increase, although I decrease", 9],
-        ["mtavaa, wakati atavua", "You (pl.) will wear, while she undresses", 9],
+        ["mtavaa, wakati atavua", "You (pl) will wear, while she undresses", 9],
         ["unalala, wakati ninaamka", "You sleep, while I wake up", 9],
         ["unatafuta, lakini atapoteza", "You find, but she loses", 9],
         ["tunataka kuweka, hata hivyo wataondoa", "We want to put, however they remove", 9],
@@ -749,7 +754,7 @@
           numberValue += selectedNumber.number;
           
           // Only add to numberText if the value isn't zero or if it's the only digit
-          if (selectedNumber.number !== 0 || numberValue === 0) {
+          if (selectedNumber.number !== 0) {
             numberText.push(selectedNumber.swahili);
           }
         }
@@ -763,12 +768,14 @@
         }
         
         // For numbers like "kumi na tano" (15), where we need to add "na" between tens and ones
+    console.log(selectedRanges, numberText);
         if (selectedRanges.length === 2 && 
             selectedRanges[0].range === tens && 
             selectedRanges[1].range === singleDigits &&
             numberText.length === 2) {  // Make sure we actually have two parts
           numberText = [numberText[0], "na", numberText[1]];
         }
+    console.log(numberValue, numberText);
         
         return {
           value: numberValue,
