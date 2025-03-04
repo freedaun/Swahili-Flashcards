@@ -2,7 +2,7 @@
 
 This is a page which allows you to practice Swahili in a very uncomplicated way, so you can focus on learning. 
 
-<img src="https://github.com/user-attachments/assets/ba00a8bb-820e-46ab-bfc4-fa288574ec3e" width="600">
+<img src="https://github.com/user-attachments/assets/dadf7e0e-b90e-4e10-9aec-9a05170c7197" width="600">
 
 You get a simple sentence from one or more categories, for you to see if you already understand it. 
 
@@ -18,7 +18,7 @@ When you don't understand a word, consult an AI to explain the word using the fo
 
 This prefers the Kenyan dialect, because it is simpler. 
 
-You can select cards from one or more categories. Progress is reported. 
+You can select cards from one or more categories. Shift+click a category to select only this category. Progress is reported. 
 
 Click `Invert` to go from English to Swhahili instead. Type `UpArrow` to hear the card spoken (bad pronounciation). 
 
@@ -26,5 +26,5 @@ To add words or sentences, open the file in a text editor, locate `vocabulary[]`
 
 Verbs have their root separated by a single quote, to show the conjugation, ex: `ana'lia`. The same was done for nouns when they are modified, like `kazi'ni`. 
 
-Randomization also affects the last 2 categories, Conjugated and Negated, as are generated on the fly for each session. Likewise possessives are randomized in phrases that contain them. 
+Randomization affects the categories Quantities, Conjugated and Negated, as they are generated on the fly for each session. Likewise possessives are randomized in phrases that contain them. 
 
