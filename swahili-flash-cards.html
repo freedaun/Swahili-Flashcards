@@ -37,7 +37,7 @@
         .category-10 { color: black; }
         .category-11 { color: forestgreen; }
         .category-12 { color: blueviolet; }
-        .category-13 { color: crimson; } /* New color for negated sentences */
+        .category-13 { color: crimson; } 
         #wordCounter {
             margin-top: 10px;
             padding: 5px;
@@ -87,7 +87,7 @@
         ["habari za asubuhi", "good morning", 1],
         ["sawa, tuta'onana", "okay, we will see each other", 1],
         ["pole sana kwa msiba", "very sorry for the loss", 1],
-        ["jambo rafiki yangu", "hello my friend", 1],
+        ["jambo rafiki", "hello friend", 1],
         ["sasa habari yako", "hi, how are you", 1],
         ["karibu sana nyumbani kwetu", "welcome to our home", 1],
         ["samahani kwa kuchelewa", "sorry for being late", 1],
@@ -374,6 +374,8 @@
         ["Tuta'kuwa na furaha sana", "We will be very happy", 7],
         
         // Category 8: Glue words 
+        ["Siku njema! Nawe pia", "Have a good day. You too", 8],
+        ["Ufurahie wikendi yako! Kwako pia", "Enjoy your weekend! Same to you", 8],
         ["Atarudi hivi karibuni", "She'll be back soon", 8],
         ["Sina mtandao", "I don't have connectivity", 8],
         ["Sina intaneti sasa hivi", "I don't have internet right now", 8],
@@ -382,6 +384,7 @@
         ["ile ni yake", "that is his", 8],
         ["chai na kahawa", "tea and coffee", 8],
         ["ama soda au maji", "either soda or water", 8],
+        ["si maziwa wala divai", "not milk nor wine (neither milk or wine)", 8],
         ["lakini nime'choka sana", "but I am very tired", 8],
         ["kwa sababu nime'chelewa", "because I am late", 8],
         ["kama unataka, unaweza", "if you want, you can", 8],
@@ -768,14 +771,12 @@
         }
         
         // For numbers like "kumi na tano" (15), where we need to add "na" between tens and ones
-    console.log(selectedRanges, numberText);
         if (selectedRanges.length === 2 && 
             selectedRanges[0].range === tens && 
             selectedRanges[1].range === singleDigits &&
             numberText.length === 2) {  // Make sure we actually have two parts
           numberText = [numberText[0], "na", numberText[1]];
         }
-    console.log(numberValue, numberText);
         
         return {
           value: numberValue,
@@ -1003,8 +1004,8 @@
         
         // English possessive equivalents (same order as Swahili stems)
         const englishPossessives = {
-            singular: ["your", "my", "her", "our", "your (pl)", "their"],
-            plural: ["your", "my", "her", "our", "your (pl)", "their"]
+            singular: ["your", "my", "her", "our", "Your", "their"],
+            plural: ["your", "my", "her", "our", "Your", "their"]
         };
         
         // Additional phrases with possessives to check
@@ -1083,11 +1084,11 @@
                 // Try to replace the English possessive if present
                 let englishReplaced = false;
                 for (const oldPossessive of possessiveList) {
-                    if (englishPhrase.includes(oldPossessive)) {
-                        englishPhrase = englishPhrase.replace(
-                            oldPossessive, 
-                            possessiveList[newIndex]
-                        );
+                    const regex = new RegExp(`\\b${oldPossessive}'?s?\\b`, 'gi');
+                    if (regex.test(englishPhrase)) {
+console.log(englishPhrase, ": ", oldPossessive, " => ", possessiveList[newIndex]);
+                        englishPhrase = englishPhrase.replace(regex, possessiveList[newIndex]);
+console.log(englishPhrase);
                         englishReplaced = true;
                         break;
                     }
