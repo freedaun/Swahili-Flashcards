@@ -64,22 +64,19 @@
     <script>
 
     let categories = [
-        "Greetings",    // Everyday greetings, thanks, welcomes
-        "Questions",    // How to ask questions in Swahili
-        "Activities",   // What people do (eating, drinking, working)
-        "Quantities",   // Counting phrases and amounts
-        "Time",         // Today, tomorrow, morning, evening
-        "Descriptive",  // Adjectives and descriptions
-        "Food",         // Food, beverages, meals
-        "People",       // Family, friends, descriptions of people
-        "Places",       // Locations, directions, spatial concepts
-        "Objects",      // Things, items, ownership
-        "Nature",       // Animals and natural elements
-        "Glue words",   // And, but, because, if/then
-        "Verb Pairs",   // Contrasting verb phrases (added back)
+        "Greetings",    // 1 Everyday greetings, thanks, welcomes
+        "Questions",    // 2 How to ask questions in Swahili
+        "Activities",   // 3 What people do (eating, drinking, working)
+        "Quantities",   // 4 Counting phrases and amounts
+        "Time",         // 5 Today, tomorrow, morning, evening
+        "Things",       // 6
+        "Descriptive",  // 7 Adjectives and descriptions
+        "Glue words",   // 8 And, but, because, if/then
+        "Verb Pairs",   // 9 Contrasting verb phrases (added back)
         "Conjugated", 
         "Negated"
     ];
+
 
     let vocabulary = [
         // Category 1: Greetings 
@@ -163,6 +160,8 @@
         ["nani ame'kuja na wewe?", "who came with you?", 2],
         ["gani unataka kuvaa?", "which one do you want to wear?", 2],
         ["kwa nini ume'lia?", "why did you cry?", 2],
+        ["Wewe huwa hauna?", "You never have it?", 2],
+        ["Haipo, imepotea?", "it's not here, it has disappeared?", 5],
         
         // Category 3: Activities 
         ["ana'kula chakula haraka", "she eats food quickly", 3],
@@ -239,6 +238,7 @@
         ["Ali'lia, kulia", "she cried, to the right", 3],
         
         // Category 4: Quantities 
+        /*
         ["mtu mmoja", "one person", 4],
         ["watu wawili", "two people", 4],
         ["nyumba tatu", "three houses", 4],
@@ -259,8 +259,20 @@
         ["watu elfu moja", "one thousand people", 4],
         ["nyumba elfu mbili", "two thousand houses", 4],
         ["simba elfu kumi", "ten thousand lions", 4],
+        ["Dakika tano", "five minutes", 4],
+        ["Dakika kumi na tano", "fifteen minutes", 4],
+        */
         
         // Category 5: Time 
+        ["Saa sita", "Noon (also: midnight)", 5], 
+        ["Robo saa", "Quarter of an hour", 5],
+        ["Nitakupa nusu saa Alhamisi", "I'll give you half an hour on Thursday", 5],
+        ["Jumapili ya kwanza mwezi ujao", "on the first Sunday of the next month", 5],
+        ["Nitapona hadi Ijumaa", "I will recover until Friday", 5],
+        ["Nahitaji watu wawili zaidi, mmoja kila upande", "I need two more people, one on each side", 5],
+        ["Dakika kumi kuipasha moto?", "ten minutes to heat it?", 5],
+        ["Jumapili, Jumanne, Alhamisi, Ijumaa", "Sunday, Tuesday, Thursday, Friday", 5],
+        ["Wiki ijayo, Mwezi ujao, Mwaka ujao", "Next week, next month, next year", 5],
         ["tuta'onana baadaye sana", "we will see each other much later", 5],
         ["ata'kuja hivi karibuni sana", "she will come very soon", 5],
         ["tuli'kwenda jana asubuhi", "we went yesterday morning", 5],
@@ -271,12 +283,6 @@
         ["Mwalimu ata'sema habari", "The teacher will say hello", 5],
         ["Watapika pilau jiko'ni", "They will cook pilau in the kitchen", 5],
         ["tuli'lala mapema jana", "We slept early yesterday", 5],
-        ["nita'kununua matunda", "I will buy fruits", 5],
-        ["Tuta'cheza mpira pwani", "We will play soccer on the coast", 5],
-        ["nita'vaa nguo m'pya", "I will wear new clothes", 5],
-        ["Tuta'tumia kijiko na sahani", "We will use a spoon and plate", 5],
-        ["nita'pata kahawa tamu", "I will get sweet coffee", 5],
-        ["Tuta'kuwa na furaha sana", "We will be very happy", 5],
         ["tuta'onana baadaye kidogo", "we will see each other a little later", 5],
         ["ata'kuja hivi karibuni sana", "she will come very soon", 5],
         ["tuli'kwenda jana jioni", "we went yesterday evening", 5],
@@ -294,18 +300,48 @@
         ["nita'pata kahawa tamu sana hivi karibuni", "I will get very sweet coffee soon", 5],
         ["Itakuwa poa sana!", "It will be very cool!", 5],
         
-        // Category 6: Descriptive 
-        ["mtu mrefu", "tall person", 6],
-        ["nyumba kubwa", "big house", 6],
-        ["chakula kitamu sana", "very delicious food", 6],
-        ["maji baridi", "cold water", 6],
-        ["mwalimu mkarimu", "generous teacher", 6],
-        ["soko lenye watu wengi", "crowded market", 6],
-        ["ndugu mpendwa", "beloved sibling", 6],
-        ["jina zuri", "beautiful name", 6],
-        ["jina la utani maarufu", "famous nickname", 6],
+        // Category 6: Places 
+        ["hapa ni pazuri sana", "here is very nice", 6],
+        ["pale ni mbali kidogo", "right there is a little far", 6],
+        ["huko kuna watu wengi", "over there there are many people", 6],
+        ["ndani ya nyumba ni baridi", "inside the house it is cold", 6],
+        ["nje ya nyumba ni joto", "outside the house it is hot", 6],
+        ["hoteli ya kitalii", "tourist hotel", 6],
+        ["pwani ya bahari", "sea coast", 6],
+        ["kushoto kwako", "to your left", 6],
+        ["kulia kwako", "to your right", 6],
+        ["mbele yako", "in front of you", 6],
+        ["nyumba ya kifahari", "luxurious house", 6],
+        ["soko la samaki lenye harufu", "fish market that has odor", 6],
+        ["hapa ni penye amani", "here is peaceful", 6],
+        ["pale ni mahali pazuri", "right there is a nice place", 6],
+        ["huko kuna mandhari nzuri", "over there there is a beautiful view", 6],
+        ["ndani ya gari ni joto", "inside the car it is hot", 6],
+        ["nje ya mji ni baridi", "outside the city it is cold", 6],
+        ["kitabu cha hadithi", "story book", 6],
+        ["gari jipya", "new car", 6],
+        ["meza ya mbao", "wooden table", 6],
+        ["nguo za hariri", "silk clothes", 6],
+        ["viatu vya ngozi", "leather shoes", 6],
+        ["miguu yangu imechoka", "my legs are tired", 6],
+        ["basi la abiria", "passenger bus", 6],
+        ["kitabu cha kusisimua", "exciting book", 6],
+        ["gari la michezo haraka", "fast sports car", 6],
+        ["meza ya vioo", "glass table", 6],
+        ["nguo za pamba laini", "soft cotton clothes", 6],
+        ["viatu vya michezo", "sports shoes", 6],
+        ["kichwa changu kina'uma sana leo", "my head hurts a lot today", 6],
         
-        // Category 7: Food 
+        // Category 7: Descriptive 
+        ["mtu mrefu", "tall person", 7],
+        ["nyumba kubwa", "big house", 7],
+        ["chakula kitamu sana", "very delicious food", 7],
+        ["maji baridi", "cold water", 7],
+        ["mwalimu mkarimu", "generous teacher", 7],
+        ["soko lenye watu wengi", "crowded market", 7],
+        ["ndugu mpendwa", "beloved sibling", 7],
+        ["jina zuri", "beautiful name", 7],
+        ["jina la utani maarufu", "famous nickname", 7],
         ["matunda matamu", "sweet fruits", 7],
         ["mboga safi", "clean vegetables", 7],
         ["pilau la nyama", "meat pilau", 7],
@@ -314,131 +350,99 @@
         ["matunda ya porini matamu", "sweet wild fruits", 7],
         ["mboga za majani safi", "fresh leafy vegetables", 7],
         ["pilau la kuku la harufu nzuri", "good smelling chicken pilau", 7],
+        ["mwanafunzi mchapakazi", "hardworking student", 7],
+        ["daktari bingwa", "expert doctor", 7],
+        ["mama mpendwa", "beloved mother", 7],
+        ["baba mkarimu", "generous father", 7],
+        ["mtu mwenye hekima", "person that has wisdom", 7],
+        ["mwalimu mkuu mwenye busara", "head teacher having wisdom", 7],
+        ["rafiki wa kweli mwaminifu", "truly loyal friend", 7],
+        ["ndugu wa damu mpendwa", "beloved blood sibling", 7],
+        ["mwanafunzi mwerevu mchapakazi", "clever hardworking student", 7],
+        ["daktari mahiri bingwa", "skilled expert doctor", 7],
+        ["simba mkali", "fierce lion", 7],
+        ["tembo mkubwa sana", "very large elephant", 7],
+        ["simba mwenye nguvu mkali", "strong fierce lion", 7],
+        ["tembo dume mkubwa sana", "very large male elephant", 7],
+        ["Mvua inanyesha sasa", "The rain is falling now", 7],
+        ["Jua lina'angaza sana leo", "The sun shines very brightly today", 7],
+        ["Mvua inanyesha sana", "The rain is falling heavily", 7],
+        ["nita'kununua matunda", "I will buy fruits", 7],
+        ["nita'vaa nguo m'pya", "I will wear new clothes", 7],
+        ["Tuta'tumia kijiko na sahani", "We will use a spoon and plate", 7],
+        ["nita'pata kahawa tamu", "I will get sweet coffee", 7],
+        ["Tuta'kuwa na furaha sana", "We will be very happy", 7],
         
-        // Category 8: People 
-        ["mwanafunzi mchapakazi", "hardworking student", 8],
-        ["daktari bingwa", "expert doctor", 8],
-        ["mama mpendwa", "beloved mother", 8],
-        ["baba mkarimu", "generous father", 8],
-        ["mtu mwenye hekima", "person that has wisdom", 8],
-        ["mwalimu mkuu mwenye busara", "head teacher having wisdom", 8],
-        ["rafiki wa kweli mwaminifu", "truly loyal friend", 8],
-        ["ndugu wa damu mpendwa", "beloved blood sibling", 8],
-        ["mwanafunzi mwerevu mchapakazi", "clever hardworking student", 8],
-        ["daktari mahiri bingwa", "skilled expert doctor", 8],
+        // Category 8: Glue words 
+        ["hii ni yangu", "this is mine", 8],
+        ["ile ni yake", "that is his", 8],
+        ["chai na kahawa", "tea and coffee", 8],
+        ["ama soda au maji", "either soda or water", 8],
+        ["lakini nime'choka sana", "but I am very tired", 8],
+        ["kwa sababu nime'chelewa", "because I am late", 8],
+        ["kama unataka, unaweza", "if you want, you can", 8],
+        ["pia mimi naku'bali", "also I agree", 8],
+        ["hiyo ni nzuri sana", "that one is very good", 8],
+        ["zile ni kubwa sana", "those are very big", 8],
+        ["hizi ni ndogo sana", "these are very small", 8],
+        ["zao ni nzuri sana", "theirs are very good", 8],
+        ["yetu ni kubwa sana", "ours is very big", 8],
+        ["hii ni mali yangu", "this is my property", 8],
+        ["ile ni nyumba yake", "that is his house", 8],
+        ["chai na mkate", "tea and bread", 8],
+        ["ama kahawa au juisi", "either coffee or juice", 8],
+        ["lakini nina njaa sana", "but I am very hungry", 8],
+        ["kwa sababu nime'chelewa kazi'ni", "because I am late for work", 8],
+        ["kama unataka, unaweza kuingia", "if you want, you can enter", 8],
+        ["pia mimi nime'furahi", "also I am happy", 8],
+        ["hiyo ni zawadi nzuri sana", "that is a very nice gift", 8],
+        ["zile ni nguo safi sana", "those are very clean clothes", 8],
+        ["hizi ni viatu vi'pya sana", "these are very new shoes", 8],
+        ["zao ni ma'gari mazuri sana", "theirs are very nice cars", 8],
+        ["yetu ni shamba kubwa sana", "ours is a very big farm", 8],
         
-        // Category 9: Places 
-        ["hapa ni pazuri sana", "here is very nice", 9],
-        ["pale ni mbali kidogo", "right there is a little far", 9],
-        ["huko kuna watu wengi", "over there there are many people", 9],
-        ["ndani ya nyumba ni baridi", "inside the house it is cold", 9],
-        ["nje ya nyumba ni joto", "outside the house it is hot", 9],
-        ["hoteli ya kitalii", "tourist hotel", 9],
-        ["pwani ya bahari", "sea coast", 9],
-        ["kushoto kwako", "to your left", 9],
-        ["kulia kwako", "to your right", 9],
-        ["mbele yako", "in front of you", 9],
-        ["nyumba ya kifahari", "luxurious house", 9],
-        ["soko la samaki lenye harufu", "fish market that has odor", 9],
-        ["hapa ni penye amani", "here is peaceful", 9],
-        ["pale ni mahali pazuri", "right there is a nice place", 9],
-        ["huko kuna mandhari nzuri", "over there there is a beautiful view", 9],
-        ["ndani ya gari ni joto", "inside the car it is hot", 9],
-        ["nje ya mji ni baridi", "outside the city it is cold", 9],
+        // Category 9: Verb Pairs 
+        ["ninanunua, lakini una uza", "I buy, but you sell", 9],
+        ["anafunga, kwa sababu tunafungua", "She closes, because we open", 9],
+        ["wanapenda, ingawa mimi nachukia", "They love, although I hate", 9],
+        ["unataka kuingia, lakini yeye anatoka", "You want to enter, but she exits", 9],
+        ["walianza, basi tunamaliza", "They started, so we finish", 9],
+        ["nitapanda, wakati watashuka", "I will go up, while they go down", 9],
+        ["mnavuta, wakati wao wanasukuma", "You (pl.) pull, while they push", 9],
+        ["utatoa, kisha nitachukua", "You will give, then I will take", 9],
+        ["wanajenga, lakini tunaharibu", "They build, but we destroy", 9],
+        ["unaongeza, ingawa mimi napungua", "You increase, although I decrease", 9],
+        ["mtavaa, wakati atavua", "You (pl.) will wear, while she undresses", 9],
+        ["unalala, wakati ninaamka", "You sleep, while I wake up", 9],
+        ["unatafuta, lakini atapoteza", "You find, but she loses", 9],
+        ["tunataka kuweka, hata hivyo wataondoa", "We want to put, however they remove", 9],
+        ["wanacheka, lakini tunalia", "They laugh, but we cry", 9],
+        ["nitakaa, wakati wao wanasimama", "I will sit, while they stand", 9],
+        ["atakimbia, wakati tunatembea", "She will run, while we walk", 9],
+        ["Wewe ongea, kisha nita'sikiliza", "You speak, then I'll listen", 9],
+        ["nitafundisha, ili wanajifunze", "I will teach, so that they learn", 9],
+        ["unasoma, wakati ninaandika", "You read, while I write", 9],
+        ["atasafisha, ingawa wao wanachafu", "She will clean, although they dirty", 9],
+        ["utaleta, lakini wanapleka", "You will bring, but they take", 9],
+        ["atakata, hata hivyo tunaunganisha", "She will cut, however we join", 9],
+        ["tunapika, ili wao wanakula", "We cook, so that they eat", 9],
+        ["utaleta, lakini wanarudisha", "You will bring, but they return", 9],
+        ["nitashinda, kwa sababu watashindwa", "I will win, because they will lose", 9],
+        ["utauliza, kisha nitajibu", "You will ask, then I will answer", 9],
+        ["wanaamini, ingawa mimi natia shaka", "They believe, although I doubt", 9],
+        ["tutahifadhi, wakati wao wanatumia", "We will save, while they use", 9],
+        ["utapata, lakini atakosa", "You will get, but she misses", 9],
+        ["Ali'onekana, kisha aka'potea", "She appeared, then disappeared", 9],
         
-        // Category 10: Objects 
-        ["kitabu cha hadithi", "story book", 10],
-        ["gari jipya", "new car", 10],
-        ["meza ya mbao", "wooden table", 10],
-        ["nguo za hariri", "silk clothes", 10],
-        ["viatu vya ngozi", "leather shoes", 10],
-        ["miguu yangu imechoka", "my legs are tired", 10],
-        ["basi la abiria", "passenger bus", 10],
-        ["kitabu cha kusisimua", "exciting book", 10],
-        ["gari la michezo haraka", "fast sports car", 10],
-        ["meza ya vioo", "glass table", 10],
-        ["nguo za pamba laini", "soft cotton clothes", 10],
-        ["viatu vya michezo", "sports shoes", 10],
-        ["kichwa changu kina'uma sana leo", "my head hurts a lot today", 10],
+        // Category 10: Conjugated 
         
-        // Category 11: Nature 
-        ["simba mkali", "fierce lion", 11],
-        ["tembo mkubwa sana", "very large elephant", 11],
-        ["simba mwenye nguvu mkali", "strong fierce lion", 11],
-        ["tembo dume mkubwa sana", "very large male elephant", 11],
-        ["Mvua inanyesha sasa", "The rain is falling now", 11],
-        ["Jua lina'angaza sana leo", "The sun shines very brightly today", 11],
-        ["Mvua inanyesha sana sasa", "The rain is falling heavily now", 11],
-        
-        // Category 12: Connectors 
-        ["hii ni yangu", "this is mine", 12],
-        ["ile ni yake", "that is his", 12],
-        ["chai na kahawa", "tea and coffee", 12],
-        ["ama soda au maji", "either soda or water", 12],
-        ["lakini nime'choka sana", "but I am very tired", 12],
-        ["kwa sababu nime'chelewa", "because I am late", 12],
-        ["kama unataka, unaweza", "if you want, you can", 12],
-        ["pia mimi naku'bali", "also I agree", 12],
-        ["hiyo ni nzuri sana", "that one is very good", 12],
-        ["zile ni kubwa sana", "those are very big", 12],
-        ["hizi ni ndogo sana", "these are very small", 12],
-        ["zao ni nzuri sana", "theirs are very good", 12],
-        ["yetu ni kubwa sana", "ours is very big", 12],
-        ["hii ni mali yangu", "this is my property", 12],
-        ["ile ni nyumba yake", "that is his house", 12],
-        ["chai na mkate", "tea and bread", 12],
-        ["ama kahawa au juisi", "either coffee or juice", 12],
-        ["lakini nina njaa sana", "but I am very hungry", 12],
-        ["kwa sababu nime'chelewa kazi'ni", "because I am late for work", 12],
-        ["kama unataka, unaweza kuingia", "if you want, you can enter", 12],
-        ["pia mimi nime'furahi", "also I am happy", 12],
-        ["hiyo ni zawadi nzuri sana", "that is a very nice gift", 12],
-        ["zile ni nguo safi sana", "those are very clean clothes", 12],
-        ["hizi ni viatu vi'pya sana", "these are very new shoes", 12],
-        ["zao ni ma'gari mazuri sana", "theirs are very nice cars", 12],
-        ["yetu ni shamba kubwa sana", "ours is a very big farm", 12],
-        
-        // Category 13: Verb Pairs 
-        ["ninanunua, una uza", "I buy, you sell", 13],
-        ["anafunga, tunafungua", "she closes, we open", 13],
-        ["wanapenda, mimi nachukia", "They love, I hate", 13],
-        ["unataka kuingia, yeye anatoka", "You want to enter, she exits", 13],
-        ["walianza, tunamaliza", "They started, we finish", 13],
-        ["nitapanda, watashuka", "I will go up, they go down", 13],
-        ["mnavuta, wao wanasukuma", "You (pl.) pull, they push", 13],
-        ["utatoa, nitachukua", "You will give, I will take", 13],
-        ["wanajenga, tunaharibu", "They build, we destroy", 13],
-        ["unaongeza, mimi napungua", "You increase, I decrease", 13],
-        ["mtavaa, atavua", "You (pl.) will wear, she undresses", 13],
-        ["unalala, ninaamka", "You sleep, I wake up", 13],
-        ["unatafuta, atapoteza", "You find, she loses", 13],
-        ["tunataka kuweka, wataondoa", "We want to put, they remove", 13],
-        ["wanacheka, tunalia", "They laugh, we cry", 13],
-        ["nitakaa, wao wanasimama", "I will sit, they stand", 13],
-        ["atakimbia, tunatembea", "she will run, we walk", 13],
-        ["unaongea, mimi nasikiliza", "You speak, I listen", 13],
-        ["nitafundisha, wanajifunza", "I will teach, they learn", 13],
-        ["unasoma, ninaandika", "You read, I write", 13],
-        ["atasafisha, wao wanachafu", "she will clean, they dirty", 13],
-        ["utaleta, wanapleka", "You will bring, they take", 13],
-        ["atakata, tunaunganisha", "she will cut, we join", 13],
-        ["tunapika, wao wanakula", "We cook, they eat", 13],
-        ["utaleta, wanarudisha", "You will bring, they return", 13],
-        ["nitashinda, watashindwa", "I will win, they will lose", 13],
-        ["utauliza, nitajibu", "You will ask, I will answer", 13],
-        ["wanaamini, mimi natia shaka", "They believe, I doubt", 13],
-        ["tutahifadhi, wao wanatumia", "We will save, they use", 13],
-        ["utapata, atakosa", "You will get, she misses", 13],
-        
-        // Category 14: Conjugated 
-        
-        // Category 15: Negated 
-        ["sina pesa", "I don't have money", 15],
-        ["huna wakati", "you don't have time", 15],
-        ["hana chakula", "she doesn't have food", 15],
-        ["hatuna maji", "we don't have water", 15],
-        ["si mwalimu", "I am not a teacher", 15],
-        ["wewe si mgonjwa", "you are not sick", 15]
+        // Category 11: Negated 
+        ["sina pesa", "I don't have money", 11],
+        ["huna wakati", "you don't have time", 11],
+        ["hana chakula", "she doesn't have food", 11],
+        ["hatuna maji", "we don't have water", 11],
+        ["si mwalimu", "I am not a teacher", 11],
+        ["wewe si mgonjwa", "you are not sick", 11]
     ];
 
 
@@ -487,7 +491,7 @@
             root: "ku'ja", 
             english: {
                 present: ["come","come","comes","come","come","come"],
-                past: ["came","came","came","come","come","come"],
+                past: ["came","came","came","came","came","came"],
                 future: ["will come","will come","will come","will come","will come","will come"],
             },
             tenses: {
@@ -505,8 +509,8 @@
         { 
             root: "ku'wa", 
             english: {
-                present: ["have","have","has","have","had","have"],
-                past: ["have","had","have","have","had","have"],
+                present: ["have","have","has","have","have","have"],
+                past: ["had","had","had","had","had","had"],
                 future: ["will have","will have","will have","will have","will have","will have"],
             },
             tenses: {
@@ -545,7 +549,7 @@
     const tenseMarkers = {
         "present": {
             prefix: "na",
-            english: ["am","is","is","are","are","are"],
+            english: ["am","are","is","are","are","are"],
             example: "ninasoma - I am reading"
         },
         "past": {
@@ -594,6 +598,205 @@
       });
     }
     
+    function generateNumberPhrases(count = 25) {
+      // Common Swahili nouns with their English translations and noun class prefixes
+      // every odd lineis singular, every even line is a plural
+      const nouns = [
+        { swahili: "mtu", english: "person", class: "m" },
+        { swahili: "watu", english: "people", class: "wa" },
+        { swahili: "kitabu", english: "book", class: "ki" },
+        { swahili: "vitabu", english: "books", class: "vi" },
+        { swahili: "ndizi", english: "banana", class: "n" },
+        { swahili: "ndizi", english: "bananas", class: "n" },
+        { swahili: "nyumba", english: "house", class: "n" },
+        { swahili: "nyumba", english: "houses", class: "n" },
+        { swahili: "gari", english: "car", class: "ji" },
+        { swahili: "magari", english: "cars", class: "ma" },
+        { swahili: "mwalimu", english: "teacher", class: "m" },
+        { swahili: "walimu", english: "teachers", class: "wa" },
+        { swahili: "mfanyakazi", english: "worker", class: "m" },
+        { swahili: "wafanyakazi", english: "workers", class: "wa" },
+        { swahili: "chai", english: "tea", class: "n" },
+        { swahili: "chai", english: "tea", class: "n" },
+        { swahili: "kahawa", english: "coffee", class: "n" },
+        { swahili: "kahawa", english: "coffee", class: "n" },
+        { swahili: "mtoto", english: "child", class: "m" },
+        { swahili: "watoto", english: "children", class: "wa" },
+        { swahili: "mti", english: "tree", class: "m" },
+        { swahili: "miti", english: "trees", class: "mi" },
+        { swahili: "chungwa", english: "orange", class: "ji" },
+        { swahili: "machungwa", english: "oranges", class: "ma" },
+        { swahili: "rafiki", english: "friend", class: "n" },
+        { swahili: "marafiki", english: "friends", class: "ma" },
+        { swahili: "embe", english: "mango", class: "ji" },
+        { swahili: "maembe", english: "mangoes", class: "ma" },
+        { swahili: "kiatu", english: "shoe", class: "ki" },
+        { swahili: "viatu", english: "shoes", class: "vi" },
+        { swahili: "saa", english: "hour", class: "n" },
+        { swahili: "saa", english: "hours", class: "n" },
+        { swahili: "dakika", english: "minute", class: "n" },
+        { swahili: "dakika", english: "minutes", class: "n" },
+        { swahili: "wiki", english: "week", class: "n" },
+        { swahili: "wiki", english: "weeks", class: "n" },
+        { swahili: "mwezi", english: "month", class: "m" },
+        { swahili: "miezi", english: "months", class: "mi" }
+      ];
+
+      // Swahili numbers 0-9
+      const singleDigits = [
+        { number: 0, swahili: "sufuri" },
+        { number: 1, swahili: "moja" },
+        { number: 2, swahili: "mbili" },
+        { number: 3, swahili: "tatu" },
+        { number: 4, swahili: "nne" },
+        { number: 5, swahili: "tano" },
+        { number: 6, swahili: "sita" },
+        { number: 7, swahili: "saba" },
+        { number: 8, swahili: "nane" },
+        { number: 9, swahili: "tisa" }
+      ];
+
+      // Swahili numbers for 10s (0-90)
+      const tens = [
+        { number: 0, swahili: "" },  // Empty string for 0 tens
+        { number: 10, swahili: "kumi" },
+        { number: 20, swahili: "ishirini" },
+        { number: 30, swahili: "thelathini" },
+        { number: 40, swahili: "arobaini" },
+        { number: 50, swahili: "hamsini" },
+        { number: 60, swahili: "sitini" },
+        { number: 70, swahili: "sabini" },
+        { number: 80, swahili: "themanini" },
+        { number: 90, swahili: "tisini" }
+      ];
+
+      // Swahili numbers for 100s (0-900)
+      const hundreds = [
+        { number: 0, swahili: "" },  // Empty string for 0 hundreds
+        { number: 100, swahili: "mia moja" },
+        { number: 200, swahili: "mia mbili" },
+        { number: 300, swahili: "mia tatu" },
+        { number: 400, swahili: "mia nne" },
+        { number: 500, swahili: "mia tano" },
+        { number: 600, swahili: "mia sita" },
+        { number: 700, swahili: "mia saba" },
+        { number: 800, swahili: "mia nane" },
+        { number: 900, swahili: "mia tisa" }
+      ];
+
+      // Swahili numbers for 1000s (0-9000)
+      const thousands = [
+        { number: 0, swahili: "" },  // Empty string for 0 thousands
+        { number: 1000, swahili: "elfu moja" },
+        { number: 2000, swahili: "elfu mbili" },
+        { number: 3000, swahili: "elfu tatu" },
+        { number: 4000, swahili: "elfu nne" },
+        { number: 5000, swahili: "elfu tano" },
+        { number: 6000, swahili: "elfu sita" },
+        { number: 7000, swahili: "elfu saba" },
+        { number: 8000, swahili: "elfu nane" },
+        { number: 9000, swahili: "elfu tisa" }
+      ];
+
+      // Swahili numbers for millions (0-9000000)
+      const millions = [
+        { number: 0, swahili: "" },  // Empty string for 0 millions
+        { number: 1000000, swahili: "milioni moja" },
+        { number: 2000000, swahili: "milioni mbili" },
+        { number: 3000000, swahili: "milioni tatu" },
+        { number: 4000000, swahili: "milioni nne" },
+        { number: 5000000, swahili: "milioni tano" },
+        { number: 6000000, swahili: "milioni sita" },
+        { number: 7000000, swahili: "milioni saba" },
+        { number: 8000000, swahili: "milioni nane" },
+        { number: 9000000, swahili: "milioni tisa" }
+      ];
+
+      // Group all number ranges
+      const numberRanges = [
+        { range: singleDigits, max: 9 },
+        { range: tens, max: 90 },
+        { range: hundreds, max: 900 },
+        { range: thousands, max: 9000 },
+        { range: millions, max: 9000000 },
+      ];
+
+      // Function to construct a number in Swahili
+      function constructNumber() {
+        
+        // Randomly choose 2 number ranges as per the requirement
+        const selectedRanges = [];
+        const availableRanges = [...numberRanges];
+        
+        for (let i = 0; i < 2 && availableRanges.length > 0; i++) {
+          const randomIndex = Math.floor(Math.random() * Math.random() * availableRanges.length);
+          selectedRanges.push(availableRanges[randomIndex]);
+          availableRanges.splice(randomIndex, 1);
+        }
+        
+        // Sort the selected ranges from highest to lowest
+        selectedRanges.sort((a, b) => b.max - a.max);
+        
+        let numberValue = 0;
+        let numberText = [];
+        
+        // Construct the number using the selected ranges
+        for (const rangeObj of selectedRanges) {
+          const range = rangeObj.range;
+          const randomIndex = Math.floor(Math.random() * range.length);
+          const selectedNumber = range[randomIndex];
+          
+          numberValue += selectedNumber.number;
+          
+          // Only add to numberText if the value isn't zero or if it's the only digit
+          if (selectedNumber.number !== 0 || numberValue === 0) {
+            numberText.push(selectedNumber.swahili);
+          }
+        }
+        
+        // If the combined value is 0, use "sufuri"
+        if (numberValue === 0) {
+          return {
+            value: 0,
+            text: "sufuri"
+          };
+        }
+        
+        // For numbers like "kumi na tano" (15), where we need to add "na" between tens and ones
+        if (selectedRanges.length === 2 && 
+            selectedRanges[0].range === tens && 
+            selectedRanges[1].range === singleDigits &&
+            numberText.length === 2) {  // Make sure we actually have two parts
+          numberText = [numberText[0], "na", numberText[1]];
+        }
+        
+        return {
+          value: numberValue,
+          text: numberText.join(" ").trim()  // Trim to handle empty strings
+        };
+      }
+
+      // Generate the requested number of phrases
+      const phrases = [];
+      for (let i = 0; i < count; i++) {
+        // Select a random noun
+        const nounIndex = Math.floor(Math.random() * (nouns.length / 2));
+        
+        // Construct a random number
+        const number = constructNumber();
+        const noun = nouns[nounIndex * 2 + (number.value != 1 ?1 :0)];
+        // Create the phrase
+        const swahiliPhrase = `${number.text} ${noun.swahili}`;
+        const englishPhrase = `${number.value} ${noun.english}`;
+        
+        // Add to the list of phrases
+        phrases.push([swahiliPhrase, englishPhrase, 4]);
+      }
+      
+      return phrases;
+    }
+
+
     // Function to generate conjugated verb forms
     function generateConjugatedVerbs() {
         var conjugatedVerbs = [];
@@ -623,7 +826,7 @@
                                                                    tenseMarkers[tense].english[isubject] + " " + verb.english);
                                                 
                         // Add to list
-                        conjugatedVerbs.push([conjugatedSwahili, conjugatedEnglish, 14]);
+                        conjugatedVerbs.push([conjugatedSwahili, conjugatedEnglish, 10]);
                     }
                 });
             });
@@ -646,7 +849,7 @@
             let conjugatedEnglish = subjectPrefixes[subject] + " " + english;
             
             // Add to list
-            conjugatedVerbs.push([conjugatedSwahili, conjugatedEnglish, 14]);
+            conjugatedVerbs.push([conjugatedSwahili, conjugatedEnglish, 10]);
         }
         
         conjugatedVerbs = filterUniqueFirstElement(conjugatedVerbs);
@@ -692,7 +895,7 @@
                         }
                         
                         // Add to list
-                        negatedVerbs.push([negatedSwahili, negatedEnglish, 15]);
+                        negatedVerbs.push([negatedSwahili, negatedEnglish, 11]);
                     }
                 });
             });
@@ -793,8 +996,8 @@
         
         // English possessive equivalents (same order as Swahili stems)
         const englishPossessives = {
-            singular: ["your", "my", "his/her", "our", "your (pl)", "their"],
-            plural: ["your", "my", "his/her", "our", "your (pl)", "their"]
+            singular: ["your", "my", "her", "our", "your (pl)", "their"],
+            plural: ["your", "my", "her", "our", "your (pl)", "their"]
         };
         
         // Additional phrases with possessives to check
@@ -889,9 +1092,9 @@
                     const englishPatterns = [
                         { old: "his", new: ["your", "my", "his", "our", "your", "their"] },
                         { old: "her", new: ["your", "my", "her", "our", "your", "their"] },
-                        { old: "my", new: ["your", "my", "his/her", "our", "your", "their"] },
-                        { old: "our", new: ["your", "my", "his/her", "our", "your", "their"] },
-                        { old: "their", new: ["your", "my", "his/her", "our", "your", "their"] }
+                        { old: "my", new: ["your", "my", "her", "our", "your", "their"] },
+                        { old: "our", new: ["your", "my", "her", "our", "your", "their"] },
+                        { old: "their", new: ["your", "my", "her", "our", "your", "their"] }
                     ];
                     
                     for (const pattern of englishPatterns) {
@@ -919,11 +1122,11 @@
         // First, randomize possessives in the vocabulary (keeping same length)
         vocabulary = randomizePossessivesInVocabulary();
         
-        // Then generate verb forms as before
+        const numberPhrases = generateNumberPhrases(25);
         const conjugatedVerbs = generateConjugatedVerbs();
         const negatedVerbs = generateNegatedVerbs();
-        vocabulary = vocabulary.concat(conjugatedVerbs).concat(negatedVerbs);
-        conjugatedVerbCount = conjugatedVerbs.length + negatedVerbs.length;
+        vocabulary = vocabulary.concat(numberPhrases).concat(conjugatedVerbs).concat(negatedVerbs);
+        concatEntryCount = numberPhrases.length + conjugatedVerbs.length + negatedVerbs.length;
     }
 
 
@@ -941,7 +1144,8 @@
     let wordCounterDiv;
     let totalCards = 0;
     let cardsPassed = 0;
-    let conjugatedVerbCount = 0;
+    let concatEntryCount = 0;
+    let isShiftPressed = false;
 
     function updateWordCounter() {
         // Update the counter with total cards and cards passed
@@ -951,16 +1155,16 @@
         `;
     }
 
-    function populateCheckboxes() {
-        // Add "All" checkbox
-        let allLabel = document.createElement("label");
-        let allCheckbox = document.createElement("input");
-        allCheckbox.type = "checkbox";
-        allCheckbox.id = "allCategories";
-        allCheckbox.checked = true;
-        allLabel.appendChild(allCheckbox);
-        allLabel.appendChild(document.createTextNode("All"));
-        categoryCheckboxesDiv.appendChild(allLabel);
+function populateCheckboxes() {
+    // Add "All" checkbox
+    let allLabel = document.createElement("label");
+    let allCheckbox = document.createElement("input");
+    allCheckbox.type = "checkbox";
+    allCheckbox.id = "allCategories";
+    allCheckbox.checked = true;
+    allLabel.appendChild(allCheckbox);
+    allLabel.appendChild(document.createTextNode("All"));
+    categoryCheckboxesDiv.appendChild(allLabel);
 
         // Add category checkboxes
         categories.forEach((category, index) => {
@@ -969,6 +1173,31 @@
             checkbox.type = "checkbox";
             checkbox.value = index + 1;
             checkbox.checked = true;
+            
+            // Add a click handler to the label to handle Shift+click on the text
+            label.addEventListener("click", function(event) {
+                // Only process if Shift key is pressed AND the click was on the label text, not the checkbox
+                // We can detect this by checking if the original target is not the checkbox
+                if (isShiftPressed && event.target !== checkbox) {
+                    // Prevent the default behavior which would toggle the checkbox
+                    event.preventDefault();
+                    
+                    // Get all category checkboxes (excluding the "All" checkbox)
+                    let checkboxes = categoryCheckboxesDiv.querySelectorAll("input[type='checkbox']:not(#allCategories)");
+                    
+                    // Uncheck all checkboxes except this one
+                    checkboxes.forEach(cb => {
+                        cb.checked = (cb === checkbox);
+                    });
+                    
+                    // Update the "All" checkbox (should be unchecked since we're selecting only one category)
+                    document.getElementById("allCategories").checked = false;
+                    
+                    // Update the available words based on the selected categories
+                    filterWordsByCategory();
+                }
+            });
+            
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(category));
             categoryCheckboxesDiv.appendChild(label);
@@ -1065,7 +1294,7 @@
     function Advance(knew) {
         if (currentWord === null) {
             // vocabulary was exhausted, so restart with new set of conjugations
-            vocabulary = vocabulary.slice(0, -conjugatedVerbCount);
+            vocabulary = vocabulary.slice(0, -concatEntryCount);
             updateVocabularyWithVerbs();
             filterWordsByCategory();
             displayWord();
@@ -1116,10 +1345,42 @@
         updateWordCounter();
         displayWord();
 
-        categoryCheckboxesDiv.addEventListener("change", function(event) {
-            if (event.target.id !== "allCategories") {
-                filterWordsByCategory();
+        // Add event listeners for shift key tracking
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Shift") {
+                isShiftPressed = true;
             }
+        });
+
+        document.addEventListener("keyup", function(event) {
+            if (event.key === "Shift") {
+                isShiftPressed = false;
+            }
+        });
+
+        // Update the category checkboxes event listener
+        categoryCheckboxesDiv.addEventListener("change", function(event) {
+            // Skip special handling for the "All" checkbox
+            if (event.target.id === "allCategories") {
+                return;
+            }
+            
+            // If shift is pressed when clicking a category checkbox
+            if (isShiftPressed) {
+                // Get all category checkboxes (excluding the "All" checkbox)
+                let checkboxes = categoryCheckboxesDiv.querySelectorAll("input[type='checkbox']:not(#allCategories)");
+                
+                // Uncheck all checkboxes except the one that was clicked
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = (checkbox === event.target);
+                });
+                
+                // Update the "All" checkbox (should be unchecked since we're selecting only one category)
+                document.getElementById("allCategories").checked = false;
+            }
+            
+            // Update the available words based on the selected categories
+            filterWordsByCategory();
         });
 
         document.addEventListener("keydown", function(event) {
